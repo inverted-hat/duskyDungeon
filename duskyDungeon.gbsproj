@@ -2040,6 +2040,88 @@
             "tileColors": [],
             "script": [
                 {
+                    "id": "5d42fbc1-a8e2-4464-ac83-893f53e4803e",
+                    "command": "EVENT_SET_INPUT_SCRIPT",
+                    "args": {
+                        "input": [
+                            "b"
+                        ],
+                        "persist": false,
+                        "__scriptTabs": "press"
+                    },
+                    "children": {
+                        "true": [
+                            {
+                                "id": "f68c1fbb-c78a-42f9-a36c-f3de60521c7e",
+                                "command": "EVENT_IF_FALSE",
+                                "args": {
+                                    "variable": "L0",
+                                    "__collapseElse": false,
+                                    "__disableElse": true,
+                                    "__collapse": true,
+                                    "__comment": false
+                                },
+                                "children": {
+                                    "true": [
+                                        {
+                                            "id": "07544f5e-1349-4b5b-b67d-e98eee1231bd",
+                                            "command": "EVENT_LAUNCH_PROJECTILE",
+                                            "args": {
+                                                "spriteSheetId": "febb557b-5600-470f-ad49-fa0092dfc5e9",
+                                                "actorId": "$self$",
+                                                "direction": {
+                                                    "type": "property",
+                                                    "value": "$self$:direction"
+                                                },
+                                                "speed": 2,
+                                                "collisionGroup": "3",
+                                                "collisionMask": [
+                                                    "1"
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "id": "ca5b1c61-9db4-4f86-a4f2-8b089a8be5a1",
+                                            "command": "EVENT_SET_TRUE",
+                                            "args": {
+                                                "variable": "L0"
+                                            }
+                                        },
+                                        {
+                                            "id": "2c6d6a19-8238-44c9-8974-e8024ad734b5",
+                                            "command": "EVENT_WAIT",
+                                            "args": {
+                                                "time": 0.3
+                                            }
+                                        },
+                                        {
+                                            "id": "f7a8af5a-7e9c-4bf7-aea4-d2e675a86a4d",
+                                            "command": "EVENT_SET_FALSE",
+                                            "args": {
+                                                "variable": "L0"
+                                            }
+                                        },
+                                        {
+                                            "id": "56562d28-16ba-44bc-9ff3-f8f1dd3a6b86",
+                                            "command": "EVENT_END"
+                                        }
+                                    ],
+                                    "false": [
+                                        {
+                                            "id": "815ae246-260d-40fa-905b-faa05366007d",
+                                            "command": "EVENT_END"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "id": "d77fce58-71bd-4441-a525-b04c33e58248",
+                                "command": "EVENT_END"
+                            }
+                        ]
+                    }
+                },
+                {
                     "id": "e5e31e39-1c07-4d88-b44f-afea7a434fcc",
                     "command": "EVENT_END"
                 }
@@ -2260,7 +2342,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [
@@ -2305,7 +2387,19 @@
                     ],
                     "hit1Script": [],
                     "hit2Script": [],
-                    "hit3Script": [],
+                    "hit3Script": [
+                        {
+                            "id": "ca8497ee-8479-43ea-86a5-16e7c0b16cd3",
+                            "command": "EVENT_ACTOR_HIDE",
+                            "args": {
+                                "actorId": "$self$"
+                            }
+                        },
+                        {
+                            "id": "b31cb44f-3a37-49d2-b7bc-afa56468883a",
+                            "command": "EVENT_END"
+                        }
+                    ],
                     "id": "bd9ca8c1-e439-416d-9b22-62b98f0cb528",
                     "x": 19,
                     "y": 8
@@ -2437,14 +2531,16 @@
                     "height": 2
                 },
                 {
-                    "name": "",
+                    "name": "exit",
                     "trigger": "walk",
                     "script": [
                         {
                             "id": "c0d8295a-71fd-42eb-b752-858f77669dc3",
                             "command": "EVENT_TEXT",
                             "args": {
-                                "text": "hallo",
+                                "text": [
+                                    "Next level"
+                                ],
                                 "avatarId": ""
                             }
                         },
@@ -2475,17 +2571,6 @@
             "_v": 1630351932136
         },
         {
-            "id": "cd217822-64e6-4f99-b6ff-b992f2fd078b",
-            "name": "crawlerTest",
-            "width": 23,
-            "height": 31,
-            "imageWidth": 184,
-            "imageHeight": 248,
-            "filename": "crawlerTest.png",
-            "inode": "8601803400",
-            "_v": 1630337846358
-        },
-        {
             "id": "a9f7a8cf-ebda-4ad5-bc32-536e1746ec05",
             "name": "gbstudio",
             "width": 20,
@@ -2506,17 +2591,6 @@
             "filename": "invertedHat.png",
             "inode": "8604568172",
             "_v": 1630350612901
-        },
-        {
-            "id": "5b32d851-b0a3-41c1-9d71-f614e60f893b",
-            "name": "test",
-            "width": 25,
-            "height": 25,
-            "imageWidth": 200,
-            "imageHeight": 200,
-            "filename": "test.png",
-            "inode": "8601788697",
-            "_v": 1630337846358
         }
     ],
     "spriteSheets": [
@@ -2807,6 +2881,10 @@
         {
             "id": "c5bb7591-d0c6-412f-b301-dff246773594__L0",
             "name": "doorOpen"
+        },
+        {
+            "id": "e3ace0f8-751d-45a4-a23e-a187e25aa1e0__L0",
+            "name": "coolDown"
         }
     ],
     "engineFieldValues": [
@@ -2825,9 +2903,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 101,
-        "worldScrollY": 0,
-        "zoom": 127.60805168002844,
+        "worldScrollX": 34,
+        "worldScrollY": 191,
+        "zoom": 133.90660317987204,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [
