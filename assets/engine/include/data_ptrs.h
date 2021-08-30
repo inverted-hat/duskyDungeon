@@ -57,6 +57,7 @@ extern WORD plat_hold_grav;
 extern WORD plat_max_fall_vel;
 extern UBYTE topdown_grid;
 extern UBYTE fade_style;
+extern UBYTE ui_interactable;
 extern UBYTE *engine_fields_addr;
 
 #endif

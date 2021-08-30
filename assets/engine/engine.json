@@ -124,6 +124,18 @@
       ],
       "cType": "UBYTE",
       "defaultValue": 0
+    },
+    {
+      "key": "ui_interactable",
+      "label": "Ui Block and interaction",
+      "group": "SETTINGS_FADE",
+      "type": "select",
+      "options": [
+        [0, "FIELD_TEXT_INTERACTION_OFF"],
+        [1, "FIELD_TEXT_INTERACTION_ON"]
+      ],
+      "cType": "UBYTE",
+      "defaultValue": 0
     }
   ]
 }

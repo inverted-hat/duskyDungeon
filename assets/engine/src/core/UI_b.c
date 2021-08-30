@@ -147,7 +147,11 @@ void UIShowText_b() __banked {
   UWORD var_index;
   UBYTE i, l;
 
-  ui_block = TRUE;
+  // ui_block = TRUE; //---------------------------------------------------------------------------------
+  if(ui_interactable){
+    ui_block = TRUE;
+  }
+  // -----------------------------------------------------------------------------------------------
   current_text_speed = text_draw_speed;
 
   static unsigned char * src, * dest;
@@ -295,8 +299,12 @@ void UIDrawTextBufferChar_b() {
 }
 
 void UICloseDialogue_b() {
-  UIMoveTo(menu_layout ? MENU_LAYOUT_INITIAL_X : 0, MENU_CLOSED_Y, text_out_speed);
-
+  //---------------------------------------------------------------------------------------------
+  // UIMoveTo(menu_layout ? MENU_LAYOUT_INITIAL_X : 0, MENU_CLOSED_Y, text_out_speed);
+  if(ui_interactable){
+    UIMoveTo(menu_layout ? MENU_LAYOUT_INITIAL_X : 0, MENU_CLOSED_Y, text_out_speed);
+  }
+  //--------------------------------------------------------------------------------------------
   // Reset variables
   text_count = 0;
   text_lines[0] = '\0';

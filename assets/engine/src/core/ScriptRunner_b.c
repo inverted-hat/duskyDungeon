@@ -429,7 +429,11 @@ void Script_End_b() {
  */
 void Script_Text_b() {
   UIShowText(script_cmd_args[0], (script_cmd_args[1] * 256) + script_cmd_args[2]);
-  active_script_ctx.script_update_fn = ScriptUpdate_AwaitUIClosed;
+  // active_script_ctx.script_update_fn = ScriptUpdate_AwaitUIClosed; //----------------------------------
+  if(ui_interactable){
+    active_script_ctx.script_update_fn = ScriptUpdate_AwaitUIClosed;
+  }
+  //---------------------------------------------------------------------------------
 }
 
 /*
@@ -2212,7 +2216,11 @@ void Script_TextWithAvatar_b() {
   avatar_enabled = TRUE;
   UIShowText(script_cmd_args[0], (script_cmd_args[1] * 256) + script_cmd_args[2]);
   UIShowAvatar(script_cmd_args[3]);
-  active_script_ctx.script_update_fn = ScriptUpdate_AwaitUIClosed;
+  // active_script_ctx.script_update_fn = ScriptUpdate_AwaitUIClosed; //-------------------------------
+  if(ui_interactable){
+    active_script_ctx.script_update_fn = ScriptUpdate_AwaitUIClosed;
+  }
+  //-------------------------------------------------------------------------------------------------
 }
 
 void Script_LaunchProjectile_b() {
