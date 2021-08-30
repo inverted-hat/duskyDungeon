@@ -10,6 +10,8 @@
 #include "ScriptRunner.h"
 #include "Math.h"
 
+#include "Collision.h"
+
 #define SCREENWIDTH_PLUS_64 224   // 160 + 64
 #define SCREENHEIGHT_PLUS_64 208  // 144 + 64
 #define NO_ACTOR_PINNED 255
@@ -98,7 +100,7 @@ void ProjectileLaunch_b(UBYTE sprite,
 }
 
 void UpdateProjectiles_b() __banked {
-  UBYTE i, k, j, hit, frame, flip, fo;
+  UBYTE i, k, j, hit, frame, flip, fo, tile_x, tile_y;
   UINT16 screen_x;
   UINT16 screen_y;
 
@@ -145,6 +147,39 @@ void UpdateProjectiles_b() __banked {
           if (actors[hit].hit_3_ptr.bank) {
             projectiles[i].col_group = 0;
             ScriptStartBg(&actors[hit].hit_3_ptr, hit);
+          }
+        }
+      }
+
+      tile_x = DIV_8(projectiles[i].pos.x);
+      tile_y = DIV_8(projectiles[i].pos.y);
+
+      // If hit collision block then remove projectile
+      if (projectiles[i].moving) {
+        if (TileAt2x2(tile_x, tile_y - 1)) {
+          projectiles[i].life_time = 0;
+        }
+        if (projectiles[i].dir.x == 1) {
+          //Moving right
+          if (TileAt2x2(tile_x + 1, tile_y - 1) & COLLISION_LEFT) {
+            projectiles[i].life_time = 0;
+          }
+        } else if (projectiles[i].dir.x == 0) {
+          if (projectiles[i].dir.y == 1) {
+            //Moving down
+            if (TileAt2x2(tile_x, tile_y) & COLLISION_TOP) {
+              projectiles[i].life_time = 0;
+            }
+          } else {
+            //Moving up
+            if (TileAt2x2(tile_x, tile_y - 1) & COLLISION_BOTTOM) {
+              projectiles[i].life_time = 0;
+            }
+          }
+        } else { 
+          //Moving left
+          if (TileAt2x2(tile_x, tile_y - 1) & COLLISION_RIGHT) {
+            projectiles[i].life_time = 0;
           }
         }
       }
