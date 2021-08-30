@@ -2,14 +2,14 @@
 
 #include "ScriptRunner.h"
 
-UBYTE joy;
-UBYTE last_joy;
-UBYTE recent_joy;
-UBYTE await_input;
-UBYTE input_wait;
-BankPtr input_script_ptrs[NUM_INPUTS] = {{0}};
-UBYTE input_script_persist;
-UBYTE input_override_default;
+UBYTE joy = 0;
+UBYTE last_joy = 0;
+UBYTE recent_joy = 0;
+UBYTE await_input = 0;
+UBYTE input_wait = 0;
+BankPtr input_script_ptrs[NUM_INPUTS];
+UBYTE input_script_persist = 0;
+UBYTE input_override_default = 0;
 
 void HandleInputScripts() {
   UBYTE input_index, input_joy;
@@ -41,6 +41,7 @@ void RemoveInputScripts() {
   for (i = 0; i != 8; ++i) {
     if (!GET_BIT(input_script_persist, i)) {
       input_script_ptrs[i].bank = 0;
+      UNSET_BIT(input_override_default, i);
     }
   }
 }

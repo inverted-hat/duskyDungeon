@@ -17,7 +17,7 @@
 UBYTE actors_active_delete[MAX_ACTIVE_ACTORS];
 UBYTE actors_active_delete_count = 0;
 
-void ActivateActor_b(UBYTE i) {
+void ActivateActor_b(UBYTE i) __banked {
   UBYTE j;
 
   if (actors_active_size == MAX_ACTIVE_ACTORS) {
@@ -50,7 +50,7 @@ void ActivateActor_b(UBYTE i) {
   }
 }
 
-void DeactivateActor_b(UBYTE i) {
+void DeactivateActor_b(UBYTE i) __banked {
   UBYTE j, a;
 
   a = 0;  // Required to fix GBDK bug
@@ -72,7 +72,47 @@ void DeactivateActor_b(UBYTE i) {
   }
 }
 
-UBYTE ActorInFrontOfActor_b(UBYTE i) {
+UBYTE ActorInFrontOfPlayer_b(UBYTE grid_size, UBYTE inc_noclip) __banked {
+  UBYTE tile_x, tile_y;
+  UBYTE hit_actor = 0;
+
+  tile_x = player.pos.x >> 3;
+  tile_y = player.pos.y >> 3;
+
+  if (grid_size == 16) {
+    if (player.dir.y == -1) {
+      hit_actor = ActorAt3x3Tile(tile_x - 1, tile_y - 3, inc_noclip);
+    } else if (player.dir.y == 1) {
+      hit_actor = ActorAt3x3Tile(tile_x - 1, tile_y + 1, inc_noclip);
+    } else {
+      if (player.dir.x == -1) {
+        hit_actor = ActorAt3x3Tile(tile_x - 3, tile_y - 1, inc_noclip);
+      } else if (player.dir.x == 1) {
+        hit_actor = ActorAt3x3Tile(tile_x + 1, tile_y - 1, inc_noclip);
+      }
+    }      
+  } else {
+    if (player.dir.y == -1) {
+      hit_actor = ActorAt3x1Tile(tile_x, tile_y - 1, inc_noclip);
+    } else if (player.dir.y == 1) {
+      hit_actor = ActorAt3x1Tile(tile_x, tile_y + 2, inc_noclip);
+    } else {
+      if (player.dir.x == -1) {
+        hit_actor = ActorAt1x2Tile(tile_x - 2, tile_y, inc_noclip);
+      } else if (player.dir.x == 1) {
+        hit_actor = ActorAt1x2Tile(tile_x + 2, tile_y, inc_noclip);
+      }
+    }
+  }
+  if (hit_actor == 0) {
+    hit_actor = NO_ACTOR_COLLISON;
+  }
+
+  return hit_actor;
+}
+
+
+UBYTE ActorInFrontOfActor_b(UBYTE i) __banked {
   UBYTE tile_x, tile_y;
   UBYTE hit_actor = 0;
 
@@ -80,9 +120,9 @@ UBYTE ActorInFrontOfActor_b(UBYTE i) {
   tile_y = actors[i].pos.y >> 3;
 
   if (actors[i].dir.y == -1) {
-    hit_actor = ActorAt3x1Tile(tile_x - 1, tile_y - 1, TRUE);
+    hit_actor = ActorAt3x1Tile(tile_x, tile_y - 1, TRUE);
   } else if (actors[i].dir.y == 1) {
-    hit_actor = ActorAt3x1Tile(tile_x - 1, tile_y + 2, TRUE);
+    hit_actor = ActorAt3x1Tile(tile_x, tile_y + 2, TRUE);
   } else {
     if (actors[i].dir.x == -1) {
       hit_actor = ActorAt1x2Tile(tile_x - 2, tile_y, TRUE);
@@ -98,7 +138,7 @@ UBYTE ActorInFrontOfActor_b(UBYTE i) {
   return hit_actor;
 }
 
-UBYTE CheckCollisionInDirection_b(UBYTE start_x, UBYTE start_y, UBYTE end_tile, COL_CHECK_DIR check_dir) {
+UBYTE CheckCollisionInDirection_b(UBYTE start_x, UBYTE start_y, UBYTE end_tile, COL_CHECK_DIR check_dir) __banked {
   switch (check_dir) {
     case CHECK_DIR_LEFT:  // Check left
       while (start_x != end_tile) {
@@ -123,7 +163,7 @@ UBYTE CheckCollisionInDirection_b(UBYTE start_x, UBYTE start_y, UBYTE end_tile, 
     case CHECK_DIR_UP:  // Check up
       while (start_y != end_tile) {
         if (TileAt2x2(start_x, start_y - 2) ||                                      // Tile up
-            (ActorAt3x1Tile(start_x - 1, start_y - 2, FALSE) != NO_ACTOR_COLLISON)  // Actor up
+            (ActorAt3x1Tile(start_x, start_y - 2, FALSE) != NO_ACTOR_COLLISON)  // Actor up
         ) {
           return start_y;
         }
@@ -133,9 +173,9 @@ UBYTE CheckCollisionInDirection_b(UBYTE start_x, UBYTE start_y, UBYTE end_tile, 
     case CHECK_DIR_DOWN:  // Check down
       while (start_y != end_tile) {
         if (TileAt2x2(start_x, start_y) ||  // Tile down
-            ActorAt3x1Tile(start_x - 1, start_y + 1, FALSE) !=
+            ActorAt3x1Tile(start_x, start_y + 1, FALSE) !=
                 NO_ACTOR_COLLISON ||  // Actor down 1 tile
-            ActorAt3x1Tile(start_x - 1, start_y + 2, FALSE) !=
+            ActorAt3x1Tile(start_x, start_y + 2, FALSE) !=
                 NO_ACTOR_COLLISON  // Actor down 2 tiles
         ) {
           return start_y;
@@ -147,7 +187,7 @@ UBYTE CheckCollisionInDirection_b(UBYTE start_x, UBYTE start_y, UBYTE end_tile, 
   return end_tile;
 }
 
-UBYTE ActorAtTile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
+UBYTE ActorAtTile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) __banked {
   UBYTE i;
 
   for (i = actors_active_size - 1; i != 0xFF; i--) {
@@ -168,7 +208,7 @@ UBYTE ActorAtTile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
   return NO_ACTOR_COLLISON;
 }
 
-UBYTE ActorAt1x2Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
+UBYTE ActorAt1x2Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) __banked {
   UBYTE i;
 
   for (i = actors_active_size - 1; i != 0xFF; i--) {
@@ -189,7 +229,7 @@ UBYTE ActorAt1x2Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
   return NO_ACTOR_COLLISON;
 }
 
-UBYTE ActorAt1x3Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
+UBYTE ActorAt1x3Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) __banked {
   UBYTE i;
 
   for (i = actors_active_size - 1; i != 0xFF; i--) {
@@ -210,7 +250,7 @@ UBYTE ActorAt1x3Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
   return NO_ACTOR_COLLISON;
 }
 
-UBYTE ActorAt3x1Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
+UBYTE ActorAt3x1Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) __banked {
   UBYTE i;
 
   for (i = actors_active_size - 1; i != 0xFF; i--) {
@@ -226,7 +266,7 @@ UBYTE ActorAt3x1Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
     a_ty = DIV_8(actors[a].pos.y);
 
 
-    if ((ty == a_ty) && (tx == a_tx || tx == a_tx - 1 || tx == a_tx - 2)) {
+    if ((ty == a_ty) && (tx == a_tx || tx == a_tx - 1 || tx == a_tx + 1)) {
       return a;
     }
   }
@@ -234,7 +274,51 @@ UBYTE ActorAt3x1Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) {
   return NO_ACTOR_COLLISON;
 }
 
-UBYTE ActorOverlapsPlayer_b(UBYTE inc_noclip) {
+UBYTE ActorAt2x3Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) __banked {
+  UBYTE i;
+
+  for (i = actors_active_size - 1; i != 0xFF; i--) {
+    UBYTE a = actors_active[i];
+    UBYTE a_tx, a_ty;
+
+    if (!actors[a].enabled || (!inc_noclip && !actors[a].collisionsEnabled)) {
+      continue;
+    }
+
+    a_tx = DIV_8(actors[a].pos.x);
+    a_ty = DIV_8(actors[a].pos.y);
+
+    if ((ty == a_ty || ty == a_ty - 1 || ty == a_ty - 2) && (tx == a_tx || tx == a_tx - 1)) {
+      return a;
+    }
+  }
+
+  return NO_ACTOR_COLLISON;
+}
+
+UBYTE ActorAt3x3Tile_b(UBYTE tx, UBYTE ty, UBYTE inc_noclip) __banked {
+  UBYTE i;
+
+  for (i = actors_active_size - 1; i != 0xFF; i--) {
+    UBYTE a = actors_active[i];
+    UBYTE a_tx, a_ty;
+
+    if (!actors[a].enabled || (!inc_noclip && !actors[a].collisionsEnabled)) {
+      continue;
+    }
+
+    a_tx = DIV_8(actors[a].pos.x);
+    a_ty = DIV_8(actors[a].pos.y);
+
+    if ((ty == a_ty || ty == a_ty - 1 || ty == a_ty - 2) && (tx == a_tx || tx == a_tx - 1 || tx == a_tx - 2)) {
+      return a;
+    }
+  }
+
+  return NO_ACTOR_COLLISON;
+}
+
+UBYTE ActorOverlapsPlayer_b(UBYTE inc_noclip) __banked {
   UBYTE i;
 
   for (i = actors_active_size - 1; i != 0xFF; i--) {
@@ -244,8 +328,8 @@ UBYTE ActorOverlapsPlayer_b(UBYTE inc_noclip) {
       continue;
     }
 
-    if ((player.pos.x + 16 >= actors[a].pos.x) && (player.pos.x <= actors[a].pos.x + 16) &&
-        (player.pos.y + 8 >= actors[a].pos.y) && (player.pos.y <= actors[a].pos.y + 8)) {
+    if ((player.pos.x + 15 >= actors[a].pos.x) && (player.pos.x <= actors[a].pos.x + 15) &&
+        (player.pos.y + 7 >= actors[a].pos.y) && (player.pos.y <= actors[a].pos.y + 7)) {
       return a;
     }
   }
@@ -253,7 +337,7 @@ UBYTE ActorOverlapsPlayer_b(UBYTE inc_noclip) {
   return NO_ACTOR_COLLISON;
 }
 
-void InitPlayer_b() {
+void InitPlayer_b() __banked {
   UBYTE sprite_frames;
 
   sprite_frames = DIV_4(LoadSprite(map_next_sprite, 0));
@@ -290,7 +374,7 @@ void InitPlayer_b() {
   player.script_control = FALSE;
 }
 
-void ActorRunCollisionScripts_b() {
+void ActorRunCollisionScripts_b() __banked {
   Actor* actor;
 
   if (player_iframes == 0 && player.hit_actor != NO_ACTOR_COLLISON) {

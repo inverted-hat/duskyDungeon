@@ -16,6 +16,7 @@ typedef struct _PROJECTILE {
   Vector2D dir;
   UBYTE moving;
   UBYTE pin_actor;
+  UBYTE pin_offset;
   UBYTE sprite;
   UBYTE palette_index;
   SPRITE_TYPE sprite_type;
@@ -45,7 +46,7 @@ void UpdateProjectiles();
 /**
  * Same as UpdateProjectiles() but requires manually switching to bank 1 first
  */
-void UpdateProjectiles_b();
+void UpdateProjectiles_b() __banked;
 
 /**
  * Create weapon attack projectile infront of specified actor relative to their facing direction
@@ -53,10 +54,11 @@ void UpdateProjectiles_b();
  * @param sprite Index of in vram of sprite to use
  * @param palette Palette index for sprite color
  * @param actor Index of actor that will attack
+ * @param offset Offset in front of player to place attack sprite
  * @param col_group Collision group that attack belongs to
  * @param col_mask Collision mask to collide with
  */
-void WeaponAttack(UBYTE sprite, UBYTE palette, UBYTE actor, UBYTE col_group, UBYTE col_mask);
+void WeaponAttack(UBYTE sprite, UBYTE palette, UBYTE actor, UBYTE offset, UBYTE col_group, UBYTE col_mask);
 
 /**
  * Launch projectile from location

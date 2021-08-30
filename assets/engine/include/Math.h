@@ -8,7 +8,6 @@
 INT16 DespRight(INT16 a, INT16 b);
 UBYTE Lt16(UINT16 a, UINT16 b);
 UBYTE Gt16(UINT16 a, UINT16 b);
-void SeedRand();
 
 #define IS_NEG(a) ((UBYTE)(a)&0x80)
 
@@ -35,6 +34,7 @@ void SeedRand();
 #define MOD_2(a) ((a)&1)
 #define MOD_4(a) ((a)&3)
 #define MOD_8(a) ((a)&7)
+#define MOD_16(a) ((a)&15)
 #define MOD_32(a) ((a)&31)
 #define MOD_64(a) ((a)&63)
 #define MOD_128(a) ((a)&127)

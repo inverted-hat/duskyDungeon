@@ -5,6 +5,7 @@
 #include <string.h>
 #include "Palette.h"
 #include "Math.h"
+#include "data_ptrs.h"
 
 static UBYTE fade_frame;
 static FADE_DIRECTION fade_direction;
@@ -33,7 +34,7 @@ void ApplyPaletteChangeColor(UBYTE index) {
     return;
   }
 
-  if (fade_black) {
+  if (fade_style) {
     for (c = 0; c != 32; ++c, ++col) {
       BkgPaletteBuffer[c] = UpdateColorBlack(index, *col);
     }
@@ -58,7 +59,7 @@ void ApplyPaletteChangeColor(UBYTE index) {
 #endif
 
 void ApplyPaletteChangeDMG(UBYTE index) {
-  if (!fade_black) {
+  if (!fade_style) {
     OBP0_REG = obj_fade_vals[index];
     BGP_REG = bgp_fade_vals[index];
   }
@@ -68,7 +69,7 @@ void ApplyPaletteChangeDMG(UBYTE index) {
   }
 }
 
-void FadeIn_b() {
+void FadeIn_b() __banked {
   fade_frame = 0;
   fade_direction = FADE_IN;
   fade_running = TRUE;
@@ -81,7 +82,7 @@ void FadeIn_b() {
     ApplyPaletteChangeDMG(fade_timer);
 }
 
-void FadeOut_b() {
+void FadeOut_b() __banked {
   fade_frame = 0;
   fade_direction = FADE_OUT;
   fade_running = TRUE;
@@ -94,7 +95,7 @@ void FadeOut_b() {
     ApplyPaletteChangeDMG(fade_timer);
 }
 
-void FadeUpdate_b() {
+void FadeUpdate_b()  __banked {
   if (fade_running) {
     if ((fade_frame & fade_frames_per_step) == 0) {
       if (fade_direction == FADE_IN) {
@@ -119,7 +120,7 @@ void FadeUpdate_b() {
   }
 }
 
-void ApplyPaletteChange_b() {
+void ApplyPaletteChange_b() __banked {
 #ifdef CGB
   if (_cpu == CGB_TYPE) {
     ApplyPaletteChangeColor(fade_timer);

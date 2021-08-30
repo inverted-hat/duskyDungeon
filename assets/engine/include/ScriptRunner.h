@@ -154,7 +154,7 @@ void Script_ScenePushState_b();
 void Script_ScenePopState_b();
 void Script_ActorInvoke_b();
 void Script_StackPush_b();
-void Script_StackPop_b();
+void Script_StackPop_b() __banked;
 void Script_SceneResetStack_b();
 void Script_ScenePopAllState_b();
 void Script_SetInputScript_b();
@@ -186,6 +186,11 @@ void Script_PalSetUI_b();
 void Script_ActorStopUpdate_b();
 void Script_ActorSetAnimate_b();
 void Script_IfColorSupported_b();
-void Script_FadeSetSettings_b();
+void Script_EngFieldSet_b();
+void Script_EngFieldSetWord_b();
+void Script_EngFieldSetVar_b();
+void Script_EngFieldSetWordVar_b();
+void Script_EngFieldStore_b();
+void Script_EngFieldStoreWord_b();
 
 #endif

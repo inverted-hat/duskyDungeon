@@ -9,17 +9,15 @@
 #include "DataManager.h"
 #include "ScriptRunner.h"
 #include "Math.h"
-#include "Collision.h"
 
 #define SCREENWIDTH_PLUS_64 224   // 160 + 64
 #define SCREENHEIGHT_PLUS_64 208  // 144 + 64
 #define NO_ACTOR_PINNED 255
-#define ATTACK_OFFSET 10
 
 Projectile projectiles[MAX_PROJECTILES];
 UBYTE current_projectile = 0;
 
-void ProjectilesInit_b() {
+void ProjectilesInit_b() __banked {
   UBYTE i;
   for (i = 0; i != MAX_PROJECTILES; i++) {
     projectiles[i].sprite_index = SpritePoolNext();
@@ -27,17 +25,18 @@ void ProjectilesInit_b() {
   }
 }
 
-void WeaponAttack_b(UBYTE sprite, UBYTE palette, UBYTE actor, UBYTE col_group, UBYTE col_mask) {
+void WeaponAttack_b(UBYTE sprite, UBYTE palette, UBYTE actor, UBYTE offset, UBYTE col_group, UBYTE col_mask) __banked {
   if (projectiles[current_projectile].life_time == 0) {
     projectiles[current_projectile].moving = FALSE;
     projectiles[current_projectile].dir.x = actors[actor].dir.x;
     projectiles[current_projectile].dir.y = actors[actor].dir.y;
     projectiles[current_projectile].pin_actor = actor;
+    projectiles[current_projectile].pin_offset = offset;
 
     if (actors[projectiles[current_projectile].pin_actor].dir.y == 0) {
       projectiles[current_projectile].pos.x =
           actors[projectiles[current_projectile].pin_actor].pos.x +
-          (ATTACK_OFFSET * actors[projectiles[current_projectile].pin_actor].dir.x);
+          (offset * actors[projectiles[current_projectile].pin_actor].dir.x);
       projectiles[current_projectile].pos.y =
           actors[projectiles[current_projectile].pin_actor].pos.y;
     } else {
@@ -45,7 +44,7 @@ void WeaponAttack_b(UBYTE sprite, UBYTE palette, UBYTE actor, UBYTE col_group, U
           actors[projectiles[current_projectile].pin_actor].pos.x;
       projectiles[current_projectile].pos.y =
           actors[projectiles[current_projectile].pin_actor].pos.y +
-          (ATTACK_OFFSET * actors[projectiles[current_projectile].pin_actor].dir.y);
+          (offset * actors[projectiles[current_projectile].pin_actor].dir.y);
     }
 
     projectiles[current_projectile].move_speed = 0;
@@ -73,7 +72,7 @@ void ProjectileLaunch_b(UBYTE sprite,
                         UBYTE move_speed,
                         UBYTE life_time,
                         UBYTE col_group,
-                        UBYTE col_mask) {
+                        UBYTE col_mask) __banked {
   if (projectiles[current_projectile].life_time == 0) {
     projectiles[current_projectile].pin_actor = NO_ACTOR_PINNED;
     projectiles[current_projectile].moving = moving;
@@ -98,7 +97,7 @@ void ProjectileLaunch_b(UBYTE sprite,
   current_projectile = (current_projectile + 1) % MAX_PROJECTILES;
 }
 
-void UpdateProjectiles_b() {
+void UpdateProjectiles_b() __banked {
   UBYTE i, k, j, hit, frame, flip, fo;
   UINT16 screen_x;
   UINT16 screen_y;
@@ -119,8 +118,8 @@ void UpdateProjectiles_b() {
           continue;
         }
 
-        if ((projectiles[i].pos.x + 16 >= actors[a].pos.x) &&
-            (projectiles[i].pos.x <= actors[a].pos.x + 16) &&
+        if ((projectiles[i].pos.x + 12 >= actors[a].pos.x) &&
+            (projectiles[i].pos.x <= actors[a].pos.x + 12) &&
             (projectiles[i].pos.y + 8 >= actors[a].pos.y) &&
             (projectiles[i].pos.y <= actors[a].pos.y + 8)) {
           hit = a;
@@ -150,10 +149,6 @@ void UpdateProjectiles_b() {
         }
       }
 
-      if(TileAt2x1(DIV_8(projectiles[i].pos.x), DIV_8(projectiles[i].pos.y))) {
-        projectiles[i].life_time = 0;
-      }
-
       k = projectiles[i].sprite_index;
 
       // Projectile frame update
@@ -178,11 +173,11 @@ void UpdateProjectiles_b() {
         } else if (projectiles[i].dir.y == 0 && projectiles[i].dir.x != 0) {
           fo = 2 + MUL_2(projectiles[i].sprite_type == SPRITE_ACTOR_ANIMATED);
         }
-        // Facing left so flip sprite
-        if (IS_NEG(projectiles[i].dir.x)) {
-          flip = TRUE;
-        }
       }
+      // Facing left so flip sprite
+      if (IS_NEG(projectiles[i].dir.x)) {
+        flip = TRUE;
+      }      
       frame = MUL_4(projectiles[i].sprite + projectiles[i].frame + fo);
 
       // Update GB Sprite tile and props
@@ -248,12 +243,12 @@ void UpdateProjectiles_b() {
         } else {
           if (actors[projectiles[i].pin_actor].dir.y == 0) {
             projectiles[i].pos.x = actors[projectiles[i].pin_actor].pos.x +
-                                   (ATTACK_OFFSET * actors[projectiles[i].pin_actor].dir.x);
+                                   (projectiles[i].pin_offset * actors[projectiles[i].pin_actor].dir.x);
             projectiles[i].pos.y = actors[projectiles[i].pin_actor].pos.y;
           } else {
             projectiles[i].pos.x = actors[projectiles[i].pin_actor].pos.x;
             projectiles[i].pos.y = actors[projectiles[i].pin_actor].pos.y +
-                                   (ATTACK_OFFSET * actors[projectiles[i].pin_actor].dir.y);
+                                   (projectiles[i].pin_offset * actors[projectiles[i].pin_actor].dir.y);
           }
         }
       }

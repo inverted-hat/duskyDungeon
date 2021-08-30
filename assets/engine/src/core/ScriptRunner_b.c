@@ -20,6 +20,7 @@
 #include "Projectiles.h"
 #include "Palette.h"
 #include "states/Platform.h"
+#include "data_ptrs.h"
 #include <rand.h>
 
 #define RAM_START_PTR 0xA000
@@ -34,7 +35,7 @@ void ScriptHelper_ClampCamDest();
 
 UBYTE* RAMPtr;
 UBYTE scene_stack_ptr = 0;
-SCENE_STATE scene_stack[MAX_SCENE_STATES] = {{0}};
+SCENE_STATE scene_stack[MAX_SCENE_STATES];
 UBYTE emote_timer = 0;
 UBYTE shake_time = 0;
 UBYTE should_shake_x = FALSE;
@@ -146,19 +147,24 @@ const SCRIPT_CMD script_cmds[] = {
     {Script_ActorSetSprite_b, 2},      // 0x60
     {Script_IfActorRelActor_b, 4},     // 0x61
     {Script_PlayerBounce_b, 1},        // 0x62
-    {Script_WeaponAttack_b, 2},        // 0x63
+    {Script_WeaponAttack_b, 3},        // 0x63
     {Script_PalSetBackground_b, 3},    // 0x64
     {Script_PalSetSprite_b, 2},        // 0x65
     {Script_PalSetUI_b, 2},            // 0x66
     {Script_ActorStopUpdate_b, 0},     // 0x67
     {Script_ActorSetAnimate_b, 1},     // 0x68
     {Script_IfColorSupported_b, 2},    // 0x69
-    {Script_FadeSetSettings_b, 1},     // 0x6A
+    {Script_EngFieldSet_b, 3},         // 0x6A
+    {Script_EngFieldSetWord_b, 4},     // 0x6B
+    {Script_EngFieldSetVar_b, 4},      // 0x6C
+    {Script_EngFieldSetWordVar_b, 6},  // 0x6D
+    {Script_EngFieldStore_b, 4},       // 0x6E
+    {Script_EngFieldStoreWord_b, 6},   // 0x6F    
 };
 
-void ScriptTimerUpdate_b() {
-  // Don't update timer while script is running
-  if (active_script_ctx.script_ptr != 0) {
+void ScriptTimerUpdate_b() __banked {
+  // Don't update timer while a non-background script is running
+  if (script_ctxs[0].script_ptr != 0) {
     return;
   }
 
@@ -387,9 +393,9 @@ UBYTE ScriptUpdate_CamShake() {
   // Handle Shake
   if (shake_time != 0) {
     if (should_shake_x)
-      scroll_offset_x = (INT16)(shake_time & 0x5);
+      scroll_offset_x = (INT16)(shake_time & 0x5) * 2 - 5;
     if (should_shake_y)
-      scroll_offset_y = (INT16)((shake_time & 0xA) >> 1);
+      scroll_offset_y = (INT16)(shake_time & 0xA) - 5;
   }
 
   return FALSE;
@@ -675,17 +681,6 @@ void Script_FadeIn_b() {
 }
 
 /*
- * Command: FadeSetSettings
- * ----------------------------
- * Set Fade settings.
- *
- *   arg0: Fade style (0=white, 1=black)
- */
-void Script_FadeSetSettings_b() {
-  fade_black = script_cmd_args[0];
-}
-
-/*
  * Command: LoadScene
  * ----------------------------
  * Load a new scene.
@@ -891,8 +886,8 @@ void Script_ActorSetEmote_b() {
   emote_timer = 1;
   active_script_ctx.script_update_fn = ScriptUpdate_Emote;
   emote_ptr = (BankDataPtr(EMOTES_SPRITE_BANK)) + EMOTES_SPRITE_BANK_OFFSET;
-  SetBankedSpriteData(EMOTES_SPRITE_BANK, EMOTE_SPRITE, 4,
-                      emote_ptr + ((UWORD)script_cmd_args[0] * 64));
+  SetBankedSpriteData(EMOTE_SPRITE, 4,
+                      emote_ptr + ((UWORD)script_cmd_args[0] * 64), EMOTES_SPRITE_BANK);
   set_sprite_prop(0, palette);
   set_sprite_prop(1, palette);
   set_sprite_tile(0, EMOTE_SPRITE);
@@ -1844,6 +1839,8 @@ void Script_LoadVectors_b() {
  */
 void Script_ActorSetMoveSpeed_b() {
   actors[active_script_ctx.script_actor].move_speed = script_cmd_args[0];
+  actors[active_script_ctx.script_actor].pos.x = actors[active_script_ctx.script_actor].pos.x & 0xFFFC;
+  actors[active_script_ctx.script_actor].pos.y = actors[active_script_ctx.script_actor].pos.y & 0xFFFC;
 }
 
 /*
@@ -1909,7 +1906,7 @@ void Script_StackPush_b() {
  * Pop the script pointer from the stack
  * Retrieve script start ptr for if statements, script bank for long scripts.
  */
-void Script_StackPop_b() {
+void Script_StackPop_b() __banked {
   script_stack_ptr--;
   active_script_ctx.script_ptr_bank = script_bank_stack[script_stack_ptr];
   active_script_ctx.script_ptr = script_stack[script_stack_ptr];
@@ -2259,8 +2256,9 @@ void Script_WeaponAttack_b() {
   WeaponAttack(script_cmd_args[0],  // Sprite
                palette,             // Palette index
                active_script_ctx.script_actor,
-               script_cmd_args[1] & 0xF,  // Collision group
-               script_cmd_args[1] >> 4);  // Collision mask
+               script_cmd_args[1],
+               script_cmd_args[2] & 0xF,  // Collision group
+               script_cmd_args[2] >> 4);  // Collision mask
 }
 
 void Script_PalSetBackground_b() {
@@ -2284,6 +2282,7 @@ void Script_ActorStopUpdate_b() {
   if (actors[active_script_ctx.script_actor].movement_ctx) {
     ScriptCtxPoolReturn(actors[active_script_ctx.script_actor].movement_ctx, active_script_ctx.script_actor);
   }
+  actors[active_script_ctx.script_actor].movement_ctx = 0; //@wtf fixes crash but still will not stop update script from same update script
 }
 
 void Script_ActorSetAnimate_b() {
@@ -2294,4 +2293,53 @@ void Script_IfColorSupported_b() {
   if (_cpu == CGB_TYPE) {
     active_script_ctx.script_ptr = active_script_ctx.script_start_ptr + (script_cmd_args[0] * 256) + script_cmd_args[1];
   }
+}
+
+void Script_EngFieldSet_b()
+{
+  UBYTE *ptr;
+  ptr = engine_fields_addr + ((script_cmd_args[0] * 256) + script_cmd_args[1]);
+  *ptr = script_cmd_args[2];
+}
+
+void Script_EngFieldSetWord_b()
+{
+  UWORD *ptr;
+  ptr = engine_fields_addr + ((script_cmd_args[0] * 256) + script_cmd_args[1]);
+  *ptr = (script_cmd_args[2] * 256) + script_cmd_args[3];
+}
+
+void Script_EngFieldSetVar_b()
+{
+  UBYTE *ptr;
+  UBYTE var_lo;
+  ptr = engine_fields_addr + ((script_cmd_args[0] * 256) + script_cmd_args[1]);
+  var_lo = script_variables[(script_cmd_args[2] * 256) + script_cmd_args[3]];
+  *ptr = var_lo;
+}
+
+void Script_EngFieldSetWordVar_b()
+{
+  UWORD *ptr;
+  UBYTE var_lo, var_hi;
+  ptr = engine_fields_addr + ((script_cmd_args[0] * 256) + script_cmd_args[1]);
+  var_hi = script_variables[(script_cmd_args[2] * 256) + script_cmd_args[3]];
+  var_lo = script_variables[(script_cmd_args[4] * 256) + script_cmd_args[5]];
+  *ptr = (var_hi * 256) + var_lo;
+}
+
+void Script_EngFieldStore_b()
+{
+  UBYTE *ptr;
+  ptr = engine_fields_addr + ((script_cmd_args[0] * 256) + script_cmd_args[1]);
+  script_variables[(script_cmd_args[2] * 256) + script_cmd_args[3]] = *ptr;
+}
+
+void Script_EngFieldStoreWord_b()
+{
+  UBYTE *ptr;
+  ptr = engine_fields_addr + ((script_cmd_args[0] * 256) + script_cmd_args[1]);
+  script_variables[(script_cmd_args[2] * 256) + script_cmd_args[3]] = *ptr;
+  ptr += 1;
+  script_variables[(script_cmd_args[4] * 256) + script_cmd_args[5]] = *ptr;
 }
