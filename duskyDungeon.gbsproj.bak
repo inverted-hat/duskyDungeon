@@ -2048,7 +2048,7 @@
                             "type": "number",
                             "value": 3
                         },
-                        "__collapse": true
+                        "__collapse": false
                     }
                 },
                 {
@@ -2058,9 +2058,9 @@
                         "variable": "1",
                         "value": {
                             "type": "number",
-                            "value": 3
+                            "value": 4
                         },
-                        "__collapse": true
+                        "__collapse": false
                     }
                 },
                 {
@@ -2072,7 +2072,7 @@
                             "type": "number",
                             "value": 1
                         },
-                        "__collapse": true
+                        "__collapse": false
                     }
                 },
                 {
@@ -2088,10 +2088,23 @@
                     }
                 },
                 {
+                    "id": "d6eff7df-d14a-4d14-84c1-c33748d3220c",
+                    "command": "EVENT_SET_VALUE",
+                    "args": {
+                        "variable": "4",
+                        "value": {
+                            "type": "number",
+                            "value": 12
+                        },
+                        "__collapse": false
+                    }
+                },
+                {
                     "id": "1fe00394-6594-4aa2-9b77-1649d40e96c0",
                     "command": "EVENT_ENGINE_FIELD_SET",
                     "args": {
-                        "engineFieldKey": "ui_interactable"
+                        "engineFieldKey": "ui_interactable",
+                        "__collapse": true
                     }
                 },
                 {
@@ -2101,7 +2114,8 @@
                         "speedIn": "0",
                         "speedOut": "0",
                         "speed": "0",
-                        "allowFastForward": false
+                        "allowFastForward": false,
+                        "__collapse": true
                     }
                 },
                 {
@@ -2109,7 +2123,8 @@
                     "command": "EVENT_CALL_CUSTOM_EVENT",
                     "args": {
                         "customEventId": "ae72011e-20e1-4efa-acb5-6291a3041b0a",
-                        "__name": "updateUI"
+                        "__name": "updateUI",
+                        "__comment": true
                     },
                     "children": {
                         "script": [
@@ -2118,7 +2133,7 @@
                                 "command": "EVENT_TEXT",
                                 "args": {
                                     "text": [
-                                        "Lv $02$-$03$\nHp $00$/$01$"
+                                        "Lv $02$-$03$ C $04$\nHp ¾$00$/$01$"
                                     ],
                                     "avatarId": "",
                                     "__collapse": false
@@ -2129,6 +2144,17 @@
                                 "command": "EVENT_END"
                             }
                         ]
+                    }
+                },
+                {
+                    "id": "a596ddfd-7764-4f6e-9295-2b7255e84042",
+                    "command": "EVENT_TEXT",
+                    "args": {
+                        "text": [
+                            "LV$02$-$03$   ¿$04$\nHP¾#01##00#"
+                        ],
+                        "avatarId": "f47fb2fa-2a87-409b-8914-864a4efb54a8",
+                        "__collapse": false
                     }
                 },
                 {
@@ -2608,7 +2634,7 @@
                                 "actorId": "$self$",
                                 "direction": {
                                     "type": "direction",
-                                    "value": "right"
+                                    "value": "left"
                                 }
                             }
                         },
@@ -2965,7 +2991,7 @@
                     "command": "EVENT_TEXT",
                     "args": {
                         "text": [
-                            "Lv $02$-$03$\nHp $00$/$01$"
+                            "Lv $02$-$03$ C $04$\nHp ¾$00$/$01$"
                         ],
                         "avatarId": "",
                         "__collapse": false
@@ -3020,6 +3046,10 @@
         {
             "id": "3",
             "name": "minorLvl"
+        },
+        {
+            "id": "4",
+            "name": "coins"
         }
     ],
     "engineFieldValues": [
@@ -3038,9 +3068,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 0,
-        "worldScrollY": 0,
-        "zoom": 94.42953475564718,
+        "worldScrollX": 55,
+        "worldScrollY": 582,
+        "zoom": 181.08965088427067,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [

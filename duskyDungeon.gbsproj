@@ -2048,7 +2048,7 @@
                             "type": "number",
                             "value": 3
                         },
-                        "__collapse": true
+                        "__collapse": false
                     }
                 },
                 {
@@ -2058,9 +2058,9 @@
                         "variable": "1",
                         "value": {
                             "type": "number",
-                            "value": 3
+                            "value": 4
                         },
-                        "__collapse": true
+                        "__collapse": false
                     }
                 },
                 {
@@ -2072,7 +2072,7 @@
                             "type": "number",
                             "value": 1
                         },
-                        "__collapse": true
+                        "__collapse": false
                     }
                 },
                 {
@@ -2084,7 +2084,7 @@
                             "type": "number",
                             "value": 1
                         },
-                        "__collapse": false
+                        "__collapse": true
                     }
                 },
                 {
@@ -2094,7 +2094,7 @@
                         "variable": "4",
                         "value": {
                             "type": "number",
-                            "value": 2
+                            "value": 12
                         },
                         "__collapse": false
                     }
@@ -2123,19 +2123,19 @@
                     "command": "EVENT_CALL_CUSTOM_EVENT",
                     "args": {
                         "customEventId": "ae72011e-20e1-4efa-acb5-6291a3041b0a",
-                        "__name": "updateUI"
+                        "__name": "updateUI",
+                        "__comment": false
                     },
                     "children": {
                         "script": [
                             {
-                                "id": "1ec18683-3464-49b1-befe-7aae08f4ed29",
+                                "id": "b43a27fd-78aa-46d7-b912-22fe64a956b9",
                                 "command": "EVENT_TEXT",
                                 "args": {
                                     "text": [
-                                        "Lv $02$-$03$ C $04$\nHp $00$/$01$"
+                                        "LV$02$-$03$   ¿$04$\nHP¾#01##00#"
                                     ],
-                                    "avatarId": "",
-                                    "__collapse": false
+                                    "avatarId": ""
                                 }
                             },
                             {
@@ -2622,7 +2622,7 @@
                                 "actorId": "$self$",
                                 "direction": {
                                     "type": "direction",
-                                    "value": "right"
+                                    "value": "left"
                                 }
                             }
                         },
@@ -2975,14 +2975,13 @@
             "actors": {},
             "script": [
                 {
-                    "id": "1ec18683-3464-49b1-befe-7aae08f4ed29",
+                    "id": "b43a27fd-78aa-46d7-b912-22fe64a956b9",
                     "command": "EVENT_TEXT",
                     "args": {
                         "text": [
-                            "Lv $02$-$03$ C $04$\nHp $00$/$01$"
+                            "LV$02$-$03$   ¿$04$\nHP¾#01##00#"
                         ],
-                        "avatarId": "",
-                        "__collapse": false
+                        "avatarId": ""
                     }
                 },
                 {
@@ -3056,9 +3055,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 0,
-        "worldScrollY": 0,
-        "zoom": 94.42953475564718,
+        "worldScrollX": 55,
+        "worldScrollY": 582,
+        "zoom": 181.08965088427067,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [
