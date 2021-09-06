@@ -16959,7 +16959,42 @@
                             "command": "EVENT_END"
                         }
                     ],
-                    "startScript": [],
+                    "startScript": [
+                        {
+                            "id": "a2167cdf-487b-4b57-8ba7-6ba71e3ff87e",
+                            "command": "EVENT_IF_TRUE",
+                            "args": {
+                                "variable": "L0",
+                                "__collapseElse": false,
+                                "__disableElse": true
+                            },
+                            "children": {
+                                "true": [
+                                    {
+                                        "id": "f6e82578-4803-4e43-b6c8-4cffd603b6d7",
+                                        "command": "EVENT_ACTOR_HIDE",
+                                        "args": {
+                                            "actorId": "$self$"
+                                        }
+                                    },
+                                    {
+                                        "id": "1bbc3094-6b75-42b7-b215-3b7d0022f6b8",
+                                        "command": "EVENT_END"
+                                    }
+                                ],
+                                "false": [
+                                    {
+                                        "id": "4d47fa91-fb5c-4089-b548-3850e7dc5ce0",
+                                        "command": "EVENT_END"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "id": "a378fbf7-3954-4e26-b542-4e57a791aca2",
+                            "command": "EVENT_END"
+                        }
+                    ],
                     "updateScript": [],
                     "hit1Script": [],
                     "hit2Script": [],
@@ -23487,6 +23522,10 @@
         {
             "id": "6495802f-00e7-4d3e-9a76-867e2941dc46__L0",
             "name": "doorOpen"
+        },
+        {
+            "id": "f771e4fb-3707-4e1f-987a-98955675ae04__L0",
+            "name": "buy"
         }
     ],
     "engineFieldValues": [
@@ -23505,9 +23544,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 20,
-        "worldScrollY": 787,
-        "zoom": 168.27137319743633,
+        "worldScrollX": 99,
+        "worldScrollY": 1023,
+        "zoom": 136.15727572143078,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [
