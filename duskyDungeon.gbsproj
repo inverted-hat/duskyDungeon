@@ -4952,7 +4952,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -4974,7 +4974,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -6688,7 +6688,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -6710,7 +6710,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -10215,7 +10215,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -10237,7 +10237,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -10259,7 +10259,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [
                         {
@@ -10286,7 +10286,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [
                         {
@@ -11952,7 +11952,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -11974,7 +11974,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -15911,7 +15911,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -15933,7 +15933,7 @@
                     "animSpeed": 3,
                     "paletteId": "",
                     "isPinned": false,
-                    "collisionGroup": "",
+                    "collisionGroup": "1",
                     "script": [],
                     "startScript": [],
                     "updateScript": [],
@@ -22434,7 +22434,7 @@
             "imageHeight": 144,
             "filename": "1-1.png",
             "inode": "8604568011",
-            "_v": 1630702243995
+            "_v": 1631112192090
         },
         {
             "id": "c0a7a645-31c4-427d-af2d-8924d1092da0",
@@ -22445,7 +22445,7 @@
             "imageHeight": 192,
             "filename": "1-2.png",
             "inode": "8604598286",
-            "_v": 1630702243995
+            "_v": 1631112192090
         },
         {
             "id": "e624263c-952b-421d-8821-966f63578d5a",
@@ -22456,7 +22456,7 @@
             "imageHeight": 208,
             "filename": "1-3.png",
             "inode": "8604599960",
-            "_v": 1630702243996
+            "_v": 1631112192090
         },
         {
             "id": "d1ac802e-cfd6-4fe6-87cc-9e9df108b87d",
@@ -22467,7 +22467,7 @@
             "imageHeight": 224,
             "filename": "1-4.png",
             "inode": "8604608438",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "afb24a06-70ee-459b-afd4-f00da372540c",
@@ -22478,7 +22478,7 @@
             "imageHeight": 240,
             "filename": "1-5.png",
             "inode": "8604631344",
-            "_v": 1630703816886
+            "_v": 1631112192091
         },
         {
             "id": "cf0f2e93-6bcb-4835-adc9-49fae8446c0b",
@@ -22489,7 +22489,7 @@
             "imageHeight": 176,
             "filename": "chooseLevel.png",
             "inode": "8604610064",
-            "_v": 1630702243996
+            "_v": 1631112192090
         },
         {
             "id": "a9f7a8cf-ebda-4ad5-bc32-536e1746ec05",
@@ -22500,7 +22500,7 @@
             "imageHeight": 144,
             "filename": "gbstudio.png",
             "inode": "8604572310",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "6b63c67b-6b9e-421f-a819-403198fbb256",
@@ -22511,7 +22511,7 @@
             "imageHeight": 144,
             "filename": "invertedHat.png",
             "inode": "8604568172",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "a5304fc7-180e-4840-9aa7-3946a0c4a850",
@@ -22522,7 +22522,7 @@
             "imageHeight": 144,
             "filename": "invetory.png",
             "inode": "8604637618",
-            "_v": 1630756266698
+            "_v": 1631112192091
         }
     ],
     "spriteSheets": [
@@ -22533,7 +22533,7 @@
             "type": "static",
             "filename": "axeUi.png",
             "inode": "8604650408",
-            "_v": 1630955279373
+            "_v": 1631112192091
         },
         {
             "id": "f99449a6-4df2-4861-a93a-c647b5ff89b0",
@@ -22542,7 +22542,7 @@
             "type": "actor_animated",
             "filename": "bat.png",
             "inode": "8604608711",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "e850e659-8420-40b7-92cc-2d7106505299",
@@ -22551,7 +22551,7 @@
             "type": "static",
             "filename": "bread.png",
             "inode": "8604613338",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "67416e8c-a152-4340-84c4-3fd98a153117",
@@ -22560,7 +22560,7 @@
             "type": "static",
             "filename": "chest.png",
             "inode": "8601803049",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "f54ab941-645f-49ea-97a0-0b8fa970f85f",
@@ -22569,7 +22569,7 @@
             "type": "animated",
             "filename": "cursor.png",
             "inode": "8604637813",
-            "_v": 1630757501971
+            "_v": 1631112192091
         },
         {
             "id": "a8276f37-ba4c-4c86-abca-072bdecd5708",
@@ -22578,7 +22578,7 @@
             "type": "static",
             "filename": "doorDown.png",
             "inode": "8601792286",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "f6968cd5-1592-42f0-84c1-94451f8eb0b4",
@@ -22587,7 +22587,7 @@
             "type": "static",
             "filename": "doorLeft.png",
             "inode": "8601792291",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "c7acebc4-a19c-420f-be7d-74749de6c1b8",
@@ -22596,7 +22596,7 @@
             "type": "static",
             "filename": "doorRight.png",
             "inode": "8601792280",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "fce14921-e656-4e37-a894-d9d4ec499c8c",
@@ -22605,7 +22605,7 @@
             "type": "static",
             "filename": "doorTop.png",
             "inode": "8601792253",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "2790d679-d53f-4c60-ad9d-6bae4b780917",
@@ -22614,7 +22614,7 @@
             "type": "static",
             "filename": "fireUi.png",
             "inode": "8604650349",
-            "_v": 1630955123913
+            "_v": 1631112192091
         },
         {
             "id": "178c4ef7-43fd-4a58-a3ff-e9377afe53e2",
@@ -22623,7 +22623,16 @@
             "type": "animated",
             "filename": "fireWeapons.png",
             "inode": "8604650910",
-            "_v": 1630956696397
+            "_v": 1631112192091
+        },
+        {
+            "id": "e21ea7ff-db56-4f37-a463-3d6950150557",
+            "name": "ghost",
+            "numFrames": 6,
+            "type": "actor_animated",
+            "filename": "ghost.png",
+            "inode": "8604661317",
+            "_v": 1631115920379
         },
         {
             "id": "9c3e8f1c-7898-479c-9865-353e8a4e4d3f",
@@ -22632,7 +22641,7 @@
             "type": "static",
             "filename": "hammerUi.png",
             "inode": "8604650451",
-            "_v": 1630955394851
+            "_v": 1631112192091
         },
         {
             "id": "b0347c80-d420-47ac-bf60-a72cf2586288",
@@ -22641,7 +22650,7 @@
             "type": "static",
             "filename": "heartcontainer.png",
             "inode": "8604613403",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "590674f2-fa8d-40d0-925a-b0c7130152cd",
@@ -22650,7 +22659,7 @@
             "type": "animated",
             "filename": "hearts.png",
             "inode": "8601796486",
-            "_v": 1630702243996
+            "_v": 1631112192092
         },
         {
             "id": "f47fb2fa-2a87-409b-8914-864a4efb54a8",
@@ -22659,7 +22668,7 @@
             "type": "static",
             "filename": "key.png",
             "inode": "8604570196",
-            "_v": 1630702243997
+            "_v": 1631112192091
         },
         {
             "id": "536fc05c-73bb-44fb-a11a-90dd9538dfbc",
@@ -22668,7 +22677,7 @@
             "type": "actor_animated",
             "filename": "knight.png",
             "inode": "8604574967",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "8d95824b-01f6-4958-8330-35c91db9fdaa",
@@ -22677,7 +22686,7 @@
             "type": "animated",
             "filename": "lever.png",
             "inode": "8601791850",
-            "_v": 1630702243996
+            "_v": 1631112192092
         },
         {
             "id": "d929c44b-52a2-421c-a3f2-20e1b92e35d3",
@@ -22686,7 +22695,7 @@
             "type": "static",
             "filename": "lock.png",
             "inode": "8604570126",
-            "_v": 1630702243996
+            "_v": 1631112192091
         },
         {
             "id": "febb557b-5600-470f-ad49-fa0092dfc5e9",
@@ -22695,7 +22704,7 @@
             "type": "actor",
             "filename": "magic.png",
             "inode": "8601820387",
-            "_v": 1630702243996
+            "_v": 1631112192092
         },
         {
             "id": "d2830ec5-76d6-4c92-b3cb-ecb89a2b5639",
@@ -22704,7 +22713,7 @@
             "type": "static",
             "filename": "magicUi.png",
             "inode": "8604618770",
-            "_v": 1630702243996
+            "_v": 1631112192092
         },
         {
             "id": "5357a229-75b2-4d27-aea8-8976721afd6e",
@@ -22713,7 +22722,7 @@
             "type": "static",
             "filename": "meat.png",
             "inode": "8604613294",
-            "_v": 1630702243997
+            "_v": 1631112192092
         },
         {
             "id": "b01b0c8f-1c9b-40c4-abff-0d278f679d69",
@@ -22722,7 +22731,7 @@
             "type": "animated",
             "filename": "normalWeapons.png",
             "inode": "8604649413",
-            "_v": 1630953672690
+            "_v": 1631112192092
         },
         {
             "id": "73ec72ae-9bd0-488f-b9f1-4673ec4a4716",
@@ -22731,7 +22740,7 @@
             "type": "animated",
             "filename": "numbers.png",
             "inode": "8604637659",
-            "_v": 1630756488806
+            "_v": 1631112192092
         },
         {
             "id": "784b5b9b-f4a2-4260-9425-a61d6fc2c194",
@@ -22740,7 +22749,7 @@
             "type": "static",
             "filename": "plantUi.png",
             "inode": "8604650393",
-            "_v": 1630955224425
+            "_v": 1631112192092
         },
         {
             "id": "cdaa177c-dd7c-4249-9e89-f372ea8eb1c3",
@@ -22749,7 +22758,7 @@
             "type": "animated",
             "filename": "plantWeapons.png",
             "inode": "8604650918",
-            "_v": 1630956783001
+            "_v": 1631112192092
         },
         {
             "id": "683e35d9-2e70-44ae-9464-0c59d5523b50",
@@ -22758,7 +22767,7 @@
             "type": "static",
             "filename": "shopkeeper.png",
             "inode": "8604613283",
-            "_v": 1630702243996
+            "_v": 1631112192092
         },
         {
             "id": "e52ec5bb-1237-4f27-bcc4-fc0d6e764c06",
@@ -22767,7 +22776,7 @@
             "type": "actor_animated",
             "filename": "slime.png",
             "inode": "8601822955",
-            "_v": 1630702243996
+            "_v": 1631112192092
         },
         {
             "id": "5065ab69-6716-4035-9feb-057eda9a087b",
@@ -22776,7 +22785,7 @@
             "type": "actor_animated",
             "filename": "sorceress.png",
             "inode": "8601788866",
-            "_v": 1630702243996
+            "_v": 1631112192092
         },
         {
             "id": "2a881bc8-6f1b-4f0c-91fa-4f5a08509e32",
@@ -22785,7 +22794,7 @@
             "type": "static",
             "filename": "stairs.png",
             "inode": "8601808305",
-            "_v": 1630702243997
+            "_v": 1631112192092
         },
         {
             "id": "8d4de36b-ba66-4439-9688-5cc23a4a34a6",
@@ -22794,7 +22803,7 @@
             "type": "static",
             "filename": "swordUi.png",
             "inode": "8604650457",
-            "_v": 1630955502295
+            "_v": 1631112192092
         },
         {
             "id": "bcd98d25-f40b-4b6e-8bf2-127878cdd586",
@@ -22803,7 +22812,7 @@
             "type": "static",
             "filename": "tridentUi.png",
             "inode": "8604650443",
-            "_v": 1630955358422
+            "_v": 1631112192092
         },
         {
             "id": "0a0cef3f-5265-4e20-9b2e-992af2898964",
@@ -22812,7 +22821,7 @@
             "type": "static",
             "filename": "waterUi.png",
             "inode": "8604650379",
-            "_v": 1630955185499
+            "_v": 1631112192092
         },
         {
             "id": "14cba9fb-1ce1-4562-8970-955c251d2ace",
@@ -22821,7 +22830,7 @@
             "type": "animated",
             "filename": "waterWeapons.png",
             "inode": "8604650915",
-            "_v": 1630956737918
+            "_v": 1631112192092
         }
     ],
     "palettes": [
@@ -23315,7 +23324,7 @@
             "filename": "template.mod",
             "settings": {},
             "inode": "8601788048",
-            "_v": 1630702243984
+            "_v": 1631112192082
         }
     ],
     "variables": [
@@ -23358,6 +23367,26 @@
         {
             "id": "9",
             "name": "boughtHeartContainers"
+        },
+        {
+            "id": "10",
+            "name": "weapon"
+        },
+        {
+            "id": "11",
+            "name": "fireWeaponObtained"
+        },
+        {
+            "id": "12",
+            "name": "waterWeaponObtained"
+        },
+        {
+            "id": "13",
+            "name": "plantWeaponObtained"
+        },
+        {
+            "id": "14",
+            "name": "playerChar"
         },
         {
             "id": "df32bf5a-6b03-4dc1-ae7c-136dfc2461e7__L0",
@@ -23438,26 +23467,6 @@
         {
             "id": "6683c4da-ea8a-4069-ab05-2379e30b9013__L0",
             "name": "eat"
-        },
-        {
-            "id": "10",
-            "name": "weapon"
-        },
-        {
-            "id": "11",
-            "name": "fireWeaponObtained"
-        },
-        {
-            "id": "12",
-            "name": "waterWeaponObtained"
-        },
-        {
-            "id": "13",
-            "name": "plantWeaponObtained"
-        },
-        {
-            "id": "14",
-            "name": "playerChar"
         },
         {
             "id": "0b504fa7-31bb-4caa-92a5-b4a5a0dde504__L0",
@@ -23544,8 +23553,8 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 99,
-        "worldScrollY": 1023,
+        "worldScrollX": 146,
+        "worldScrollY": 168,
         "zoom": 136.15727572143078,
         "customColorsEnabled": false,
         "customHead": "",
