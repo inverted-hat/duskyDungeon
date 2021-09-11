@@ -374,7 +374,22 @@
                 0
             ],
             "tileColors": [],
-            "script": [],
+            "script": [
+                {
+                    "id": "d39e2d73-ba54-4fe0-93fd-4172f956f070",
+                    "command": "EVENT_ENGINE_FIELD_SET",
+                    "args": {
+                        "engineFieldKey": "fade_style",
+                        "value": {
+                            "value": 1
+                        }
+                    }
+                },
+                {
+                    "id": "f6ce02d0-cc6b-4017-80e0-db8f98ee9c25",
+                    "command": "EVENT_END"
+                }
+            ],
             "playerHit1Script": [],
             "playerHit2Script": [],
             "playerHit3Script": [],
@@ -4164,6 +4179,32 @@
                     "id": "f9464fb8-d4f1-4d66-8b31-72e103ce291a",
                     "x": 3,
                     "y": 12,
+                    "width": 2,
+                    "height": 2
+                },
+                {
+                    "name": "tutorial",
+                    "trigger": "walk",
+                    "script": [
+                        {
+                            "id": "f5189159-9b25-4364-a42e-88036524b90d",
+                            "command": "EVENT_SWITCH_SCENE",
+                            "args": {
+                                "sceneId": "2f3c236c-07f7-4806-9d9e-c4653d2b2d6f",
+                                "x": 0,
+                                "y": 0,
+                                "direction": "",
+                                "fadeSpeed": "2"
+                            }
+                        },
+                        {
+                            "id": "155a1a5b-9e63-4b72-b31e-324c55f5d94d",
+                            "command": "EVENT_END"
+                        }
+                    ],
+                    "id": "73d11e99-7eeb-4ec3-8c82-90eaf2c65805",
+                    "x": 4,
+                    "y": 3,
                     "width": 2,
                     "height": 2
                 }
@@ -50470,6 +50511,884 @@
                     "height": 1
                 }
             ]
+        },
+        {
+            "name": "Tutorial",
+            "backgroundId": "2a92d11a-eaf5-4e9c-be23-fac194e073a1",
+            "width": 20,
+            "height": 18,
+            "type": "0",
+            "paletteIds": [],
+            "collisions": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "tileColors": [],
+            "script": [
+                {
+                    "id": "3f50a09f-337c-4962-9437-5ea0574bf42f",
+                    "command": "EVENT_ENGINE_FIELD_SET",
+                    "args": {
+                        "engineFieldKey": "ui_interactable",
+                        "value": {
+                            "value": 1
+                        },
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "6ff93d4d-73ed-414d-a204-effc07f1ebac",
+                    "command": "EVENT_ACTOR_HIDE",
+                    "args": {
+                        "actorId": "$self$",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "b8657a01-7cfe-4b79-8701-8c752878d32d",
+                    "command": "EVENT_TEXT",
+                    "args": {
+                        "text": [
+                            "How to play",
+                            "Collect the key to\nunlock the stairs",
+                            "to the next floor"
+                        ],
+                        "avatarId": "",
+                        "__label": "keys",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "5ef7c990-b770-4cad-8ff8-fc448ce085fd",
+                    "command": "EVENT_ACTOR_MOVE_TO",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "x": {
+                            "type": "number",
+                            "value": 6
+                        },
+                        "y": {
+                            "type": "number",
+                            "value": 3
+                        },
+                        "moveType": "horizontal",
+                        "useCollisions": false,
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "64b175e6-2f59-4370-9809-8757a0b80827",
+                    "command": "EVENT_ACTOR_HIDE",
+                    "args": {
+                        "actorId": "d3023f25-3965-4bad-9c1b-83393169e2f3",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "895c4f18-8766-406c-a0e7-5006bca8b9a1",
+                    "command": "EVENT_ACTOR_HIDE",
+                    "args": {
+                        "actorId": "1ca4493a-fcc6-4483-b948-8cb85b2bf162",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "62a45783-7b85-4699-9ee2-7d919074c63d",
+                    "command": "EVENT_TEXT",
+                    "args": {
+                        "text": [
+                            "Use the lever to\nopen the doors"
+                        ],
+                        "avatarId": "",
+                        "__label": "lever",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "1981eb92-ab44-4ef3-b62f-bb77477b408a",
+                    "command": "EVENT_ACTOR_MOVE_TO",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "x": {
+                            "type": "number",
+                            "value": 6
+                        },
+                        "y": {
+                            "type": "number",
+                            "value": 9
+                        },
+                        "moveType": "horizontal",
+                        "useCollisions": false,
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "7bf7339a-28f3-425e-84a9-80437b7e6e20",
+                    "command": "EVENT_TEXT",
+                    "args": {
+                        "text": [
+                            "Press the A button\nto use the lever"
+                        ],
+                        "avatarId": "",
+                        "__label": "lever2",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "01ca2a32-fbb6-4d5b-adb8-28689bcd5c35",
+                    "command": "EVENT_ACTOR_SET_FRAME",
+                    "args": {
+                        "actorId": "019da90d-8c41-45a9-b75a-1c5aaa297cbd",
+                        "frame": {
+                            "type": "number",
+                            "value": 1
+                        },
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "325f8b1b-7cc4-47db-86df-8554e4c64f1e",
+                    "command": "EVENT_ACTOR_HIDE",
+                    "args": {
+                        "actorId": "9790793b-f7d0-414e-9397-9ef4e2549334",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "dd28f92a-210f-44a7-8faa-35222d50baf8",
+                    "command": "EVENT_ACTOR_HIDE",
+                    "args": {
+                        "actorId": "fc9e2cdd-b2ee-4489-b425-921251f16565",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "d11c4896-25d6-4f66-91f7-ed66d50f8fd7",
+                    "command": "EVENT_TEXT",
+                    "args": {
+                        "text": [
+                            "Press the B button\nto attack enemies"
+                        ],
+                        "avatarId": "",
+                        "__collapse": true,
+                        "__label": "attack"
+                    }
+                },
+                {
+                    "id": "e26f6ce4-31fe-4a28-b690-c1271e76e8e5",
+                    "command": "EVENT_ACTOR_SET_DIRECTION",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "direction": {
+                            "type": "direction",
+                            "value": "right"
+                        },
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "9c777073-e1aa-4943-b0b4-c270c905a876",
+                    "command": "EVENT_WAIT",
+                    "args": {
+                        "time": 0.5,
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "54a25de9-2a62-4cad-958e-b2400da34743",
+                    "command": "EVENT_ACTOR_HIDE",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "ddd0f945-1bf8-4257-a258-67d184248e5e",
+                    "command": "EVENT_ACTOR_MOVE_TO",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "x": {
+                            "type": "number",
+                            "value": 12
+                        },
+                        "y": {
+                            "type": "number",
+                            "value": 9
+                        },
+                        "moveType": "horizontal",
+                        "useCollisions": false,
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "c9bc1d21-5d5c-4151-9110-11652981e9bc",
+                    "command": "EVENT_ACTOR_SHOW",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "12847c1c-df3a-4744-986d-9531d4d6739e",
+                    "command": "EVENT_ACTOR_MOVE_TO",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "x": {
+                            "type": "number",
+                            "value": 16
+                        },
+                        "y": {
+                            "type": "number",
+                            "value": 9
+                        },
+                        "moveType": "horizontal",
+                        "useCollisions": false,
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "e7f1b20b-bb76-40e0-aa1a-fb34a705feb3",
+                    "command": "EVENT_ACTOR_SET_DIRECTION",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "direction": {
+                            "type": "direction",
+                            "value": "up"
+                        },
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "e0a589f1-953c-4e3f-9d1c-eddf0ab3e531",
+                    "command": "EVENT_LAUNCH_PROJECTILE",
+                    "args": {
+                        "spriteSheetId": "febb557b-5600-470f-ad49-fa0092dfc5e9",
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "direction": {
+                            "type": "direction",
+                            "value": "up"
+                        },
+                        "speed": 1,
+                        "collisionGroup": "3",
+                        "collisionMask": [
+                            "1"
+                        ],
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "7ef62273-57d6-4320-be21-c0130b69a75f",
+                    "command": "EVENT_WAIT",
+                    "args": {
+                        "time": 0.3,
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "1dedda39-e0f8-40ea-bcaf-bfb7fe6f783c",
+                    "command": "EVENT_ACTOR_HIDE",
+                    "args": {
+                        "actorId": "580d0462-b144-4009-a5c1-8f1fd85abe9f",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "34cba560-ee46-4781-b9ca-88463c4a68c1",
+                    "command": "EVENT_TEXT",
+                    "args": {
+                        "text": [
+                            "Use the stairs to \nget to the next",
+                            "floor"
+                        ],
+                        "avatarId": "",
+                        "__collapse": true,
+                        "__label": "stairs"
+                    }
+                },
+                {
+                    "id": "0d1ba2a6-df41-42d6-a4c6-eeebdef7d4af",
+                    "command": "EVENT_ACTOR_MOVE_TO",
+                    "args": {
+                        "actorId": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                        "x": {
+                            "type": "number",
+                            "value": 16
+                        },
+                        "y": {
+                            "type": "number",
+                            "value": 3
+                        },
+                        "moveType": "horizontal",
+                        "useCollisions": false,
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "0f8489e8-8c2d-4ba9-b04c-d000207fe370",
+                    "command": "EVENT_ENGINE_FIELD_SET",
+                    "args": {
+                        "engineFieldKey": "ui_interactable",
+                        "value": {
+                            "value": 0
+                        },
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "ac21b520-4cc1-4c89-9fff-43b8841d060b",
+                    "command": "EVENT_SWITCH_SCENE",
+                    "args": {
+                        "sceneId": "29fe8669-7689-4ca0-aca9-e6325e8b9fdc",
+                        "x": 9,
+                        "y": 8,
+                        "direction": "down",
+                        "fadeSpeed": "2",
+                        "__collapse": true
+                    }
+                },
+                {
+                    "id": "eb9e755a-9b1c-47de-b6f2-acf1f73000c7",
+                    "command": "EVENT_END"
+                }
+            ],
+            "playerHit1Script": [],
+            "playerHit2Script": [],
+            "playerHit3Script": [],
+            "id": "2f3c236c-07f7-4806-9d9e-c4653d2b2d6f",
+            "x": 529.7334968240988,
+            "y": 30,
+            "actors": [
+                {
+                    "name": "sorceress",
+                    "frame": 0,
+                    "animate": false,
+                    "spriteSheetId": "5065ab69-6716-4035-9feb-057eda9a087b",
+                    "spriteType": "actor",
+                    "direction": "right",
+                    "moveSpeed": 1,
+                    "animSpeed": 3,
+                    "paletteId": "",
+                    "isPinned": false,
+                    "collisionGroup": "",
+                    "script": [],
+                    "startScript": [],
+                    "updateScript": [],
+                    "hit1Script": [],
+                    "hit2Script": [],
+                    "hit3Script": [],
+                    "id": "e6291f7d-0c3f-459d-95aa-6b5017273590",
+                    "x": 2,
+                    "y": 7
+                },
+                {
+                    "name": "key",
+                    "frame": 0,
+                    "animate": false,
+                    "spriteSheetId": "f47fb2fa-2a87-409b-8914-864a4efb54a8",
+                    "spriteType": "static",
+                    "direction": "down",
+                    "moveSpeed": 1,
+                    "animSpeed": 3,
+                    "paletteId": "",
+                    "isPinned": false,
+                    "collisionGroup": "",
+                    "script": [],
+                    "startScript": [],
+                    "updateScript": [],
+                    "hit1Script": [],
+                    "hit2Script": [],
+                    "hit3Script": [],
+                    "id": "d3023f25-3965-4bad-9c1b-83393169e2f3",
+                    "x": 6,
+                    "y": 3
+                },
+                {
+                    "name": "exit",
+                    "frame": 0,
+                    "animate": false,
+                    "spriteSheetId": "d929c44b-52a2-421c-a3f2-20e1b92e35d3",
+                    "spriteType": "static",
+                    "direction": "down",
+                    "moveSpeed": 1,
+                    "animSpeed": 3,
+                    "paletteId": "",
+                    "isPinned": false,
+                    "collisionGroup": "",
+                    "script": [],
+                    "startScript": [],
+                    "updateScript": [],
+                    "hit1Script": [],
+                    "hit2Script": [],
+                    "hit3Script": [],
+                    "id": "1ca4493a-fcc6-4483-b948-8cb85b2bf162",
+                    "x": 16,
+                    "y": 3
+                },
+                {
+                    "name": "lever",
+                    "frame": 0,
+                    "animate": false,
+                    "spriteSheetId": "8d95824b-01f6-4958-8330-35c91db9fdaa",
+                    "spriteType": "static",
+                    "direction": "down",
+                    "moveSpeed": 1,
+                    "animSpeed": 3,
+                    "paletteId": "",
+                    "isPinned": false,
+                    "collisionGroup": "",
+                    "script": [],
+                    "startScript": [],
+                    "updateScript": [],
+                    "hit1Script": [],
+                    "hit2Script": [],
+                    "hit3Script": [],
+                    "id": "019da90d-8c41-45a9-b75a-1c5aaa297cbd",
+                    "x": 6,
+                    "y": 11
+                },
+                {
+                    "name": "door1",
+                    "frame": 0,
+                    "animate": false,
+                    "spriteSheetId": "c7acebc4-a19c-420f-be7d-74749de6c1b8",
+                    "spriteType": "static",
+                    "direction": "down",
+                    "moveSpeed": 1,
+                    "animSpeed": 3,
+                    "paletteId": "",
+                    "isPinned": false,
+                    "collisionGroup": "",
+                    "script": [],
+                    "startScript": [],
+                    "updateScript": [],
+                    "hit1Script": [],
+                    "hit2Script": [],
+                    "hit3Script": [],
+                    "id": "9790793b-f7d0-414e-9397-9ef4e2549334",
+                    "x": 8,
+                    "y": 9
+                },
+                {
+                    "name": "door2",
+                    "frame": 0,
+                    "animate": false,
+                    "spriteSheetId": "f6968cd5-1592-42f0-84c1-94451f8eb0b4",
+                    "spriteType": "static",
+                    "direction": "down",
+                    "moveSpeed": 1,
+                    "animSpeed": 3,
+                    "paletteId": "",
+                    "isPinned": false,
+                    "collisionGroup": "",
+                    "script": [],
+                    "startScript": [],
+                    "updateScript": [],
+                    "hit1Script": [],
+                    "hit2Script": [],
+                    "hit3Script": [],
+                    "id": "fc9e2cdd-b2ee-4489-b425-921251f16565",
+                    "x": 10,
+                    "y": 9
+                },
+                {
+                    "name": "",
+                    "frame": 0,
+                    "animate": false,
+                    "spriteSheetId": "e52ec5bb-1237-4f27-bcc4-fc0d6e764c06",
+                    "spriteType": "actor",
+                    "direction": "left",
+                    "moveSpeed": 0,
+                    "animSpeed": 3,
+                    "paletteId": "",
+                    "isPinned": false,
+                    "collisionGroup": "1",
+                    "script": [],
+                    "startScript": [],
+                    "updateScript": [
+                        {
+                            "id": "fe14091a-65ce-4f19-81cf-0f5b1a7cc062",
+                            "command": "EVENT_END"
+                        }
+                    ],
+                    "hit1Script": [],
+                    "hit2Script": [],
+                    "hit3Script": [
+                        {
+                            "id": "4c58590d-cfbe-42a9-958f-86641267bb13",
+                            "command": "EVENT_ACTOR_HIDE",
+                            "args": {
+                                "actorId": "$self$"
+                            }
+                        },
+                        {
+                            "id": "c1481ffb-5d2e-4e6c-af34-f9c836193bf6",
+                            "command": "EVENT_END"
+                        }
+                    ],
+                    "id": "580d0462-b144-4009-a5c1-8f1fd85abe9f",
+                    "x": 16,
+                    "y": 5
+                }
+            ],
+            "triggers": []
         }
     ],
     "backgrounds": [
@@ -50637,6 +51556,17 @@
             "filename": "invetory.png",
             "inode": "8604637618",
             "_v": 1631112192091
+        },
+        {
+            "id": "2a92d11a-eaf5-4e9c-be23-fac194e073a1",
+            "name": "tutorial",
+            "width": 20,
+            "height": 18,
+            "imageWidth": 160,
+            "imageHeight": 144,
+            "filename": "tutorial.png",
+            "inode": "8604709324",
+            "_v": 1631395513414
         }
     ],
     "spriteSheets": [
@@ -52002,9 +52932,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 914,
-        "worldScrollY": 67,
-        "zoom": 175.47548948973417,
+        "worldScrollX": 800,
+        "worldScrollY": 0,
+        "zoom": 225.1671850606799,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [

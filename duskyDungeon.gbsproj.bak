@@ -374,7 +374,22 @@
                 0
             ],
             "tileColors": [],
-            "script": [],
+            "script": [
+                {
+                    "id": "d39e2d73-ba54-4fe0-93fd-4172f956f070",
+                    "command": "EVENT_ENGINE_FIELD_SET",
+                    "args": {
+                        "engineFieldKey": "fade_style",
+                        "value": {
+                            "value": 1
+                        }
+                    }
+                },
+                {
+                    "id": "f6ce02d0-cc6b-4017-80e0-db8f98ee9c25",
+                    "command": "EVENT_END"
+                }
+            ],
             "playerHit1Script": [],
             "playerHit2Script": [],
             "playerHit3Script": [],
@@ -19061,7 +19076,8 @@
                     "id": "64fc83cf-3e61-48d5-8ed3-30e7ad55c167",
                     "command": "EVENT_ACTOR_HIDE",
                     "args": {
-                        "actorId": "$self$"
+                        "actorId": "$self$",
+                        "__collapse": true
                     }
                 },
                 {
@@ -19071,7 +19087,8 @@
                         "customEventId": "ae72011e-20e1-4efa-acb5-6291a3041b0a",
                         "__name": "updateUI",
                         "$variable[0]$": "14",
-                        "$variable[1]$": "10"
+                        "$variable[1]$": "10",
+                        "__collapse": true
                     },
                     "children": {
                         "script": [
@@ -52000,9 +52017,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 914,
-        "worldScrollY": 67,
-        "zoom": 175.47548948973417,
+        "worldScrollX": 0,
+        "worldScrollY": 0,
+        "zoom": 69.39682399481535,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [
