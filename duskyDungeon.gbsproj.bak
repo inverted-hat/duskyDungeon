@@ -1267,11 +1267,12 @@
                     "command": "EVENT_SET_INPUT_SCRIPT",
                     "args": {
                         "input": [
-                            "start"
+                            "start",
+                            "a"
                         ],
                         "persist": false,
                         "__scriptTabs": "press",
-                        "__collapse": true
+                        "__collapse": false
                     },
                     "children": {
                         "true": [
@@ -20110,7 +20111,7 @@
                         "persist": false,
                         "__scriptTabs": "press",
                         "__label": "a",
-                        "__collapse": false
+                        "__collapse": true
                     },
                     "children": {
                         "true": [
@@ -20659,7 +20660,8 @@
                     "command": "EVENT_SET_INPUT_SCRIPT",
                     "args": {
                         "input": [
-                            "start"
+                            "start",
+                            "b"
                         ],
                         "persist": false,
                         "__scriptTabs": "press",
@@ -51998,9 +52000,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 301,
-        "worldScrollY": 3519,
-        "zoom": 219.11278664320707,
+        "worldScrollX": 914,
+        "worldScrollY": 67,
+        "zoom": 175.47548948973417,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [

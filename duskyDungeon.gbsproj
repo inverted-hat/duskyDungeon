@@ -19061,7 +19061,8 @@
                     "id": "64fc83cf-3e61-48d5-8ed3-30e7ad55c167",
                     "command": "EVENT_ACTOR_HIDE",
                     "args": {
-                        "actorId": "$self$"
+                        "actorId": "$self$",
+                        "__collapse": true
                     }
                 },
                 {
@@ -19071,7 +19072,8 @@
                         "customEventId": "ae72011e-20e1-4efa-acb5-6291a3041b0a",
                         "__name": "updateUI",
                         "$variable[0]$": "14",
-                        "$variable[1]$": "10"
+                        "$variable[1]$": "10",
+                        "__collapse": true
                     },
                     "children": {
                         "script": [
@@ -20111,7 +20113,7 @@
                         "persist": false,
                         "__scriptTabs": "press",
                         "__label": "a",
-                        "__collapse": false
+                        "__collapse": true
                     },
                     "children": {
                         "true": [
@@ -20660,7 +20662,8 @@
                     "command": "EVENT_SET_INPUT_SCRIPT",
                     "args": {
                         "input": [
-                            "start"
+                            "start",
+                            "b"
                         ],
                         "persist": false,
                         "__scriptTabs": "press",
@@ -51999,9 +52002,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 400,
-        "worldScrollY": 254,
-        "zoom": 219.11278664320707,
+        "worldScrollX": 914,
+        "worldScrollY": 67,
+        "zoom": 175.47548948973417,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [
