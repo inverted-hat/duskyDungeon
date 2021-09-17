@@ -11,8 +11,9 @@ The graphics are licensed under the [CC BY](https://creativecommons.org/licenses
 [Romulus](https://opengameart.org/content/pixel-fonts-by-pix3m) by Pix3M (slightly adapted width of some characters to fit with GBStudio) 
 
 **Music**<br>
-Title Screen: Monty's Overheating Spaceship by krümel<br>
+Title & Game Over Screen: Monty's Overheating Spaceship by krümel<br>
 Choose Level: Short Hauntings by DeerTears<br>
-Level: Darkstone Remix by Tronimal (Original by DeerTears)
+Level: Darkstone Remix by Tronimal (Original by DeerTears)<br>
+Dragon Boss: Boss Fight 1 by krümel
 
 All music is from the [GB-Studio-Community-Assets](https://github.com/DeerTears/GB-Studio-Community-Assets) project.
