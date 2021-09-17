@@ -13069,7 +13069,8 @@
                                                             "offset": 8,
                                                             "collisionGroup": "3",
                                                             "collisionMask": [
-                                                                "1"
+                                                                "1",
+                                                                "2"
                                                             ]
                                                         }
                                                     },
@@ -14021,12 +14022,13 @@
                             "args": {
                                 "variable": "L0",
                                 "__collapseElse": false,
-                                "__disableElse": true
+                                "__disableElse": true,
+                                "__collapse": false
                             },
                             "children": {
                                 "true": [
                                     {
-                                        "id": "7787511e-a481-4f2e-bd4a-5221856c0131",
+                                        "id": "adc3498b-4116-40db-b4e3-1901b6be8d87",
                                         "command": "EVENT_ACTOR_HIDE",
                                         "args": {
                                             "actorId": "$self$"
@@ -69609,6 +69611,15 @@
             "_v": 1631444428938
         },
         {
+            "id": "ecc212f1-d0be-49e9-8779-7efb50c0ec52",
+            "name": "coin",
+            "numFrames": 1,
+            "type": "static",
+            "filename": "coin.png",
+            "inode": "8604757276",
+            "_v": 1631725569889
+        },
+        {
             "id": "f54ab941-645f-49ea-97a0-0b8fa970f85f",
             "name": "cursor",
             "numFrames": 2,
@@ -71117,6 +71128,10 @@
         {
             "id": "d1ee5a7a-8361-4a3a-97d6-c475dac5919a__L2",
             "name": "saved"
+        },
+        {
+            "id": "1db6d5f5-9fc4-4e8e-b009-851a73e5de20__L1",
+            "name": "coinCollected"
         }
     ],
     "engineFieldValues": [
@@ -71126,7 +71141,7 @@
         }
     ],
     "settings": {
-        "startSceneId": "2291225c-b953-4cf5-8596-bc265e0d0792",
+        "startSceneId": "da72ca19-d1f8-4552-9df0-6f03864c5dbd",
         "playerSpriteSheetId": "5065ab69-6716-4035-9feb-057eda9a087b",
         "startX": 34,
         "startY": 9,
@@ -71135,9 +71150,9 @@
         "startDirection": "down",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 72,
-        "worldScrollY": 1149,
-        "zoom": 160.63562548160553,
+        "worldScrollX": 1072,
+        "worldScrollY": 810,
+        "zoom": 170.98115193843842,
         "customColorsEnabled": false,
         "customHead": "",
         "defaultBackgroundPaletteIds": [
