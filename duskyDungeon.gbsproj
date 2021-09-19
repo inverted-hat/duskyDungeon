@@ -70265,7 +70265,7 @@
                         "comparator": "0",
                         "__collapseElse": false,
                         "__label": "attack",
-                        "__collapse": true
+                        "__collapse": false
                     },
                     "children": {
                         "true": [
@@ -70412,7 +70412,7 @@
                                                             "offset": 13,
                                                             "collisionGroup": "3",
                                                             "collisionMask": [
-                                                                "1"
+                                                                "3"
                                                             ]
                                                         }
                                                     },
@@ -73881,7 +73881,7 @@
             "type": "actor_animated",
             "filename": "slime.png",
             "inode": "8601822955",
-            "_v": 1632059678601
+            "_v": 1632063519234
         },
         {
             "id": "5065ab69-6716-4035-9feb-057eda9a087b",
@@ -75232,7 +75232,7 @@
         "startDirection": "right",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 184,
+        "worldScrollX": 82,
         "worldScrollY": 3075,
         "zoom": 139.57411187887192,
         "customColorsEnabled": false,
