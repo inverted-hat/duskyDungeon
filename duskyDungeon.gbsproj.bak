@@ -2706,13 +2706,6 @@
                     }
                 },
                 {
-                    "id": "213c1e08-b47e-46fe-8558-3c7c3c0fcc53",
-                    "command": "EVENT_SET_TRUE",
-                    "args": {
-                        "variable": "11"
-                    }
-                },
-                {
                     "id": "85b180fc-e899-4add-b7a4-006d75e02d4e",
                     "command": "EVENT_END"
                 }
@@ -74923,7 +74916,7 @@
         "showCollisions": true,
         "showConnections": true,
         "worldScrollX": 82,
-        "worldScrollY": 3075,
+        "worldScrollY": 0,
         "zoom": 139.57411187887192,
         "customColorsEnabled": false,
         "customHead": "",
