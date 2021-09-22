@@ -71640,7 +71640,7 @@
                                                         "collisionMask": [
                                                             "player"
                                                         ],
-                                                        "__collapse": true
+                                                        "__collapse": false
                                                     }
                                                 },
                                                 {
@@ -74888,17 +74888,6 @@
             "_v": 1632320047272
         },
         {
-            "id": "aa50fdc0-7900-47c7-9390-6f57dd672978",
-            "name": "title2",
-            "width": 20,
-            "height": 18,
-            "imageWidth": 160,
-            "imageHeight": 144,
-            "filename": "title2.png",
-            "inode": "8604854468",
-            "_v": 1632318899055
-        },
-        {
             "id": "2a92d11a-eaf5-4e9c-be23-fac194e073a1",
             "name": "tutorial",
             "width": 20,
@@ -75083,15 +75072,6 @@
             "_v": 1632059678601
         },
         {
-            "id": "590674f2-fa8d-40d0-925a-b0c7130152cd",
-            "name": "hearts",
-            "numFrames": 2,
-            "type": "animated",
-            "filename": "hearts.png",
-            "inode": "8601796486",
-            "_v": 1632059678601
-        },
-        {
             "id": "f47fb2fa-2a87-409b-8914-864a4efb54a8",
             "name": "key",
             "numFrames": 1,
@@ -75234,15 +75214,6 @@
             "filename": "sorceress.png",
             "inode": "8601788866",
             "_v": 1632059678601
-        },
-        {
-            "id": "bb767e89-fe39-442a-b01f-facb3aac2236",
-            "name": "sorceressTitle",
-            "numFrames": 1,
-            "type": "static",
-            "filename": "sorceressTitle.png",
-            "inode": "8604823902",
-            "_v": 1632318860548
         },
         {
             "id": "9a06fe81-a70c-4ab4-87c2-5cb3decba673",
@@ -76584,9 +76555,9 @@
         "startDirection": "right",
         "showCollisions": true,
         "showConnections": true,
-        "worldScrollX": 131,
-        "worldScrollY": 250,
-        "zoom": 197.34458148479462,
+        "worldScrollX": 0,
+        "worldScrollY": 0,
+        "zoom": 78.64178200811148,
         "customColorsEnabled": true,
         "customHead": "",
         "defaultBackgroundPaletteIds": [
