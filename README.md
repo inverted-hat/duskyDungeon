@@ -1,5 +1,12 @@
 # Dusky Dungeon
-Dusky Dungeon is a simple dungeon crawler for the Game Boy made with [GBStudio](https://www.gbstudio.dev/).
+Dusky Dungeon is a simple dungeon crawler for the Game Boy (Color) made with [GBStudio](https://www.gbstudio.dev/).
+
+<img src="assets/screenshots/title.gif" alt="Title screen" width="160" />
+<img src="assets/screenshots/chooseChar.gif" alt="Choose character screen" width="160" />
+<img src="assets/screenshots/level.gif" alt="Gameplay video as gif" width="160" />
+<img src="assets/screenshots/inventory.gif" alt="Inventory screen" width="160" />
+
+Play it for free on [itch.io](https://invertedhat.itch.io/dusky-dungeon).
 
 ### License
 The GBStudio project is licensed under the MIT license.<br>
