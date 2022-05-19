@@ -93,6 +93,12 @@ void projectiles_update() NONBANKED {
             continue;
         }
 
+        // collide with walls mod
+        if (tile_at(((projectile->pos.x >> 4) >> 3), ((projectile->pos.y >> 4) >> 3)) && projectile->def.move_speed > 0) {
+            projectile->def.life_time = 0;
+        }
+        //
+
         SWITCH_ROM(projectile->def.sprite.bank);
         spritesheet_t *sprite = projectile->def.sprite.ptr;
     
