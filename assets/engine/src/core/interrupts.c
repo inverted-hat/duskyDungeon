@@ -8,7 +8,10 @@
 #include "parallax.h"
 #include "ui.h"
 
-UBYTE hide_sprites = 0;
+#define LYC_SYNC_VALUE 150u
+
+UBYTE hide_sprites = FALSE;
+UBYTE show_actors_on_overlay = FALSE;
 
 void remove_LCD_ISRs() CRITICAL BANKED {
     remove_LCD(parallax_LCD_isr);
@@ -18,38 +21,39 @@ void remove_LCD_ISRs() CRITICAL BANKED {
 }
 
 void simple_LCD_isr() NONBANKED {
-    if (LYC_REG == 0) {
+    if (LYC_REG == LYC_SYNC_VALUE) {
         SCX_REG = draw_scroll_x;
         SCY_REG = draw_scroll_y;
-        if (!hide_sprites) SHOW_SPRITES;
-        if (win_pos_y) LYC_REG = win_pos_y - 1; else LYC_REG = 0;
+        if (WY_REG) {
+            if (WY_REG < MENU_CLOSED_Y) LYC_REG = WY_REG - 1; 
+        } else {
+            if ((WX_REG == MINWNDPOSX) && (show_actors_on_overlay == FALSE)) HIDE_SPRITES;
+        }
     } else {
-        LYC_REG = 0;
-        if (hide_sprites) return;
-        if ((LY_REG < SCREENHEIGHT) && (WX_REG == 7u)) HIDE_SPRITES;
+        if ((WX_REG == MINWNDPOSX) && (show_actors_on_overlay == FALSE)) {
+            while (STAT_REG & STATF_BUSY) ;
+            HIDE_SPRITES;
+        }
+        LYC_REG = LYC_SYNC_VALUE;
     }
 }
 
 void fullscreen_LCD_isr() NONBANKED {
-    if (LYC_REG == 0) {
+    if (LYC_REG == LYC_SYNC_VALUE) {
         LCDC_REG &= ~LCDCF_BG8000;
         SCX_REG = draw_scroll_x;
         SCY_REG = draw_scroll_y;
-        if (!hide_sprites) SHOW_SPRITES;
         LYC_REG = (9 * 8) - 1;    
     } else {
+        while (STAT_REG & STATF_BUSY) ;
         LCDC_REG |= LCDCF_BG8000;
-        LYC_REG = 0;
+        LYC_REG = LYC_SYNC_VALUE;
     }
 }
 
 void VBL_isr() NONBANKED {
-    if ((win_pos_y < MAXWNDPOSY) && (win_pos_x < SCREENWIDTH - 1)) {
-        WX_REG = win_pos_x + 7u;
-        WY_REG = win_pos_y;
-        SHOW_WIN;
-    } else {
-        HIDE_WIN;
-    }
+    WX_REG = win_pos_x + MINWNDPOSX;
+    if ((WY_REG = win_pos_y) < MENU_CLOSED_Y) SHOW_WIN; else HIDE_WIN;
+    if (hide_sprites) HIDE_SPRITES; else SHOW_SPRITES;
     scroll_shadow_update();
 }

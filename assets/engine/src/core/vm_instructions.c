@@ -104,14 +104,14 @@ const SCRIPT_CMD script_cmds[] = {
     {vm_overlay_set_submap,     6}, // 0x4F
 
     // gameboy features instructions section
-    {vm_show_sprites,           0}, // 0x50
-    {vm_hide_sprites,           0}, // 0x51
+    {0, 0},
+    {vm_set_sprites_visible,    1}, // 0x51
     {vm_input_wait,             1}, // 0x52
     {vm_input_attach,           2}, // 0x53
     {vm_input_get,              3}, // 0x54
     {vm_context_prepare,        4}, // 0x55
-    {vm_fade_in,                1}, // 0x56
-    {vm_fade_out,               1}, // 0x57
+    {0, 0},
+    {vm_fade,                   1}, // 0x57
     {vm_timer_prepare,          4}, // 0x58
     {vm_timer_set,              2}, // 0x59
     {vm_get_tile_xy,            6}, // 0x5A
@@ -130,6 +130,7 @@ const SCRIPT_CMD script_cmds[] = {
     {vm_music_routine,          4}, // 0x65
     {vm_wave_play,              6}, // 0x66
     {vm_music_setpos,           2}, // 0x67
+    // scene stack instructions
     {vm_scene_push,             0}, // 0x68
     {vm_scene_pop,              0}, // 0x69
     {vm_scene_pop_all,          0}, // 0x6A
@@ -178,5 +179,7 @@ const SCRIPT_CMD script_cmds[] = {
 
     // trigonometry instructions section
     {vm_sin_scale,              5}, // 0x89 
-    {vm_cos_scale,              5}  // 0x8A
+    {vm_cos_scale,              5}, // 0x8A
+
+    {vm_set_text_sound,         2}  // 0x8B
 };

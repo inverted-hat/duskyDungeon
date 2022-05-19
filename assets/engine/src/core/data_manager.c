@@ -64,39 +64,38 @@ void load_bkg_tileset(const tileset_t* tiles, UBYTE bank) BANKED {
     prev_bank = bank; prev_tiles = tiles;
     if ((!bank) || (!tiles)) return;
 
-    UWORD ntiles = ReadBankedUWORD(&(prev_tiles->n_tiles), prev_bank);
+    UWORD n_tiles = ReadBankedUWORD(&(prev_tiles->n_tiles), prev_bank);
 
     // load first background chunk, align to zero tile
     UBYTE * data = prev_tiles->tiles;
-    if (ntiles < 128) {
-        SetBankedBkgData(0, ntiles, data, prev_bank);
+    if (n_tiles < 128) {
+        if ((UBYTE)n_tiles) SetBankedBkgData(0, n_tiles, data, prev_bank);
         return;    
     }
     SetBankedBkgData(0, 128, data, prev_bank);
-    ntiles -= 128; data += 128 * 16;
+    n_tiles -= 128; data += 128 * 16;
 
     // load second background chunk
-    if (ntiles < 128) {
-        if (ntiles < 65) {
+    if (n_tiles < 128) {
+        if (n_tiles < 65) {
             #ifdef ALLOC_BKG_TILES_TOWARDS_SPR
                 // new allocation style, align to 192-th tile
-                SetBankedBkgData(192 - ntiles, ntiles, data, prev_bank);
+                if ((UBYTE)n_tiles) SetBankedBkgData(192 - n_tiles, n_tiles, data, prev_bank);
             #else
                 // old allocation style, align to 128-th tile
-                SetBankedBkgData(128, ntiles, data, prev_bank);
+                if ((UBYTE)n_tiles) SetBankedBkgData(128, n_tiles, data, prev_bank);
             #endif
         } else {
             // if greater than 64 allow overflow into UI, align to 128-th tile
-            SetBankedBkgData(128, ntiles, data, prev_bank);
+            if ((UBYTE)n_tiles) SetBankedBkgData(128, n_tiles, data, prev_bank);
         }
         return;
     }
     SetBankedBkgData(128, 128, data, prev_bank);
-    ntiles -= 128; data += 128 * 16; 
+    n_tiles -= 128; data += 128 * 16; 
     
     // if more than 256 - then it's a 360-tile logo, load rest to sprite area
-    if (!ntiles) return;
-    SetBankedSpriteData(0, ntiles, data, prev_bank);
+    if ((UBYTE)n_tiles) SetBankedSpriteData(0, n_tiles, data, prev_bank);
 }
 
 void load_background(const background_t* background, UBYTE bank) BANKED {
@@ -128,7 +127,7 @@ void load_background(const background_t* background, UBYTE bank) BANKED {
 
 inline UBYTE load_sprite_tileset(UBYTE base_tile, const tileset_t * tileset, UBYTE bank) {
     UBYTE n_tiles = ReadBankedUBYTE(&(tileset->n_tiles), bank);
-    SetBankedSpriteData(base_tile, n_tiles, tileset->tiles, bank);
+    if (n_tiles) SetBankedSpriteData(base_tile, n_tiles, tileset->tiles, bank);
     return n_tiles;
 }
 
@@ -243,6 +242,8 @@ UBYTE load_scene(const scene_t * scene, UBYTE bank, UBYTE init_data) BANKED {
         PLAYER.base_tile = 0;
         PLAYER.sprite = scn.player_sprite;
         tile_allocation_hiwater = load_sprite(PLAYER.base_tile, scn.player_sprite.ptr, scn.player_sprite.bank);
+        UBYTE n_loaded = load_sprite(PLAYER.base_tile, scn.player_sprite.ptr, scn.player_sprite.bank);
+        tile_allocation_hiwater = (n_loaded > scn.reserve_tiles) ? n_loaded : scn.reserve_tiles; 
         load_animations(scn.player_sprite.ptr, scn.player_sprite.bank, ANIM_SET_DEFAULT, PLAYER.animations);
         load_bounds(scn.player_sprite.ptr, scn.player_sprite.bank, &PLAYER.bounds);
     } else {
@@ -281,7 +282,8 @@ UBYTE load_scene(const scene_t * scene, UBYTE bank, UBYTE init_data) BANKED {
 
         // Add player to inactive, then activate
         PLAYER.enabled = FALSE;
-        DL_PUSH_HEAD(actors_inactive_head, &PLAYER);
+        actors_active_tail = &PLAYER;
+        DL_PUSH_HEAD(actors_inactive_head, actors_active_tail);
         activate_actor(&PLAYER);
 
         // Add other actors, activate pinned
@@ -289,11 +291,11 @@ UBYTE load_scene(const scene_t * scene, UBYTE bank, UBYTE init_data) BANKED {
             actor_t * actor = actors + 1;
             MemcpyBanked(actor, scn.actors.ptr, sizeof(actor_t) * (actors_len - 1), scn.actors.bank);
             for (i = actors_len - 1; i != 0; i--, actor++) {
-                if (actor->exclusive_sprite) {
+                if (actor->reserve_tiles) {
                     // exclusive sprites allocated separately to avoid overwriting if modified
                     actor->base_tile = tile_allocation_hiwater;
                     UBYTE n_loaded = load_sprite(tile_allocation_hiwater, actor->sprite.ptr, actor->sprite.bank);
-                    tile_allocation_hiwater += (n_loaded > actor->exclusive_sprite) ? n_loaded : actor->exclusive_sprite; 
+                    tile_allocation_hiwater += (n_loaded > actor->reserve_tiles) ? n_loaded : actor->reserve_tiles; 
                 } else {
                     // resolve and set base_tile for each actor
                     UBYTE idx = get_farptr_index(scn.sprites.ptr, scn.sprites.bank, sprites_len, &actor->sprite);

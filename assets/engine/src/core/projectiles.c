@@ -12,10 +12,6 @@
 #include "vm.h"
 #include "data/spritesheet_0.h"
 
-// collide with walls mod
-#include "collision.h"
-//
-
 projectile_t projectiles[MAX_PROJECTILES];
 projectile_def_t projectile_defs[MAX_PROJECTILE_DEFS];
 projectile_t *projectiles_active_head;
@@ -96,12 +92,6 @@ void projectiles_update() NONBANKED {
             projectile = next;
             continue;
         }
-
-        // collide with walls mod
-        if (tile_at(((projectile->pos.x >> 4) >> 3), ((projectile->pos.y >> 4) >> 3)) && projectile->def.move_speed > 0) {
-            projectile->def.life_time = 0;
-        }
-        //
 
         SWITCH_ROM(projectile->def.sprite.bank);
         spritesheet_t *sprite = projectile->def.sprite.ptr;
