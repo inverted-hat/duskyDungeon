@@ -1,4 +1,4 @@
-#pragma bank 4
+#pragma bank 255
 
 #include "projectiles.h"
 
@@ -10,7 +10,6 @@
 #include "linked_list.h"
 #include "game_time.h"
 #include "vm.h"
-#include "data/spritesheet_0.h"
 
 projectile_t projectiles[MAX_PROJECTILES];
 projectile_def_t projectile_defs[MAX_PROJECTILE_DEFS];
@@ -26,7 +25,7 @@ void projectiles_init() BANKED {
     }
 }
 
-static UBYTE _save_bank; 
+static UBYTE _save_bank;
 static projectile_t *projectile;
 static projectile_t *prev_projectile;
 
@@ -35,7 +34,7 @@ void projectiles_update() NONBANKED {
 
     projectile = projectiles_active_head;
     prev_projectile = NULL;
-    
+
     _save_bank = _current_bank;
 
     while (projectile) {
@@ -48,7 +47,7 @@ void projectiles_update() NONBANKED {
             continue;
         }
         projectile->def.life_time--;
-    
+
         // Check reached animation tick frame
         if ((game_time & projectile->def.anim_tick) == 0) {
             projectile->frame++;
@@ -56,6 +55,8 @@ void projectiles_update() NONBANKED {
             if (projectile->frame == projectile->frame_end) {
                 if (!projectile->anim_noloop) {
                     projectile->frame = projectile->frame_start;
+                } else {
+                    projectile->frame--;
                 }
             }
         }
@@ -68,22 +69,45 @@ void projectiles_update() NONBANKED {
             actor_t *hit_actor = actor_overlapping_bb(&projectile->def.bounds, &projectile->pos, NULL, FALSE);
             if (hit_actor && (hit_actor->collision_group & projectile->def.collision_mask)) {
                 // Hit! - Fire collision script here
-                if (hit_actor->script.bank) {
-                    script_execute(hit_actor->script.bank, hit_actor->script.ptr, 0, 1, (UWORD)(projectile->def.collision_group));
+                if ((hit_actor->script.bank) && (hit_actor->hscript_hit & SCRIPT_TERMINATED)) {
+                    script_execute(hit_actor->script.bank, hit_actor->script.ptr, &(hit_actor->hscript_hit), 1, (UWORD)(projectile->def.collision_group));
                 }
-
-                // Remove projectile
-                next = projectile->next;
-                LL_REMOVE_ITEM(projectiles_active_head, projectile, prev_projectile);
-                LL_PUSH_HEAD(projectiles_inactive_head, projectile);
-                projectile = next;
-                continue;            
+                if (!projectile->strong) {
+                    // Remove projectile
+                    next = projectile->next;
+                    LL_REMOVE_ITEM(projectiles_active_head, projectile, prev_projectile);
+                    LL_PUSH_HEAD(projectiles_inactive_head, projectile);
+                    projectile = next;
+                    continue;
+                }
             }
         }
 
         UINT8 screen_x = (projectile->pos.x >> 4) - draw_scroll_x + 8,
               screen_y = (projectile->pos.y >> 4) - draw_scroll_y + 8;
 
+        if (IS_FRAME_EVEN) {
+            UBYTE  tile_y, tile_start, tile_end;
+            upoint16_t new_pos;
+            new_pos.x = projectile->pos.x;
+            new_pos.y = projectile->pos.y;
+
+            // Step X
+            tile_start = (((projectile->pos.y >> 4) + projectile->def.bounds.top)    >> 3);
+            tile_end   = (((projectile->pos.y >> 4) + projectile->def.bounds.bottom) >> 3) + 1;
+
+            UBYTE tile_x = ((new_pos.x >> 4) + PLAYER.bounds.right) >> 3;
+
+            if (tile_at(tile_x, tile_start) & COLLISION_LEFT) {
+                // Remove projectile
+                next = projectile->next;
+                LL_REMOVE_ITEM(projectiles_active_head, projectile, prev_projectile);
+                LL_PUSH_HEAD(projectiles_inactive_head, projectile);
+                projectile = next;
+                continue;
+            }
+        }
+        
         if (screen_x > 160 || screen_y > 144) {
             // Remove projectile
             projectile_t *next = projectile->next;
@@ -93,15 +117,9 @@ void projectiles_update() NONBANKED {
             continue;
         }
 
-        // collide with walls mod
-        if (tile_at(((projectile->pos.x >> 4) >> 3), ((projectile->pos.y >> 4) >> 3)) && projectile->def.move_speed > 0) {
-            projectile->def.life_time = 0;
-        }
-        //
-
         SWITCH_ROM(projectile->def.sprite.bank);
         spritesheet_t *sprite = projectile->def.sprite.ptr;
-    
+
         allocated_hardware_sprites += move_metasprite(
             *(sprite->metasprites + projectile->frame),
             projectile->def.base_tile,
@@ -117,7 +135,7 @@ void projectiles_update() NONBANKED {
     SWITCH_ROM(_save_bank);
 }
 
-void projectiles_render() NONBANKED {    
+void projectiles_render() NONBANKED {
     projectile = projectiles_active_head;
     prev_projectile = NULL;
 
@@ -138,7 +156,7 @@ void projectiles_render() NONBANKED {
 
         SWITCH_ROM(projectile->def.sprite.bank);
         spritesheet_t *sprite = projectile->def.sprite.ptr;
-    
+
         allocated_hardware_sprites += move_metasprite(
             *(sprite->metasprites + projectile->frame),
             projectile->def.base_tile,
@@ -154,24 +172,33 @@ void projectiles_render() NONBANKED {
     SWITCH_ROM(_save_bank);
 }
 
-void projectile_launch(UBYTE index, upoint16_t *pos, UBYTE angle) BANKED {    
+void projectile_launch(UBYTE index, upoint16_t *pos, UBYTE angle, UBYTE flags) BANKED {
     projectile_t *projectile = projectiles_inactive_head;
     if (projectile) {
         memcpy(&projectile->def, &projectile_defs[index], sizeof(projectile_def_t));
 
         // Set correct projectile frames based on angle
         UBYTE dir = DIR_UP;
-        if (angle > 160 && angle < 224 ) {
-            dir = DIR_LEFT;
-        } else if (angle > 96) {
-            dir = DIR_DOWN;
-        } else if (angle > 32) {
-            dir = DIR_RIGHT;
+        if (angle <= 224) {
+            if (angle >= 160) {
+                dir = DIR_LEFT;
+            } else if (angle > 96) {
+                dir = DIR_DOWN;
+            } else if (angle >= 32) {
+                dir = DIR_RIGHT;
+            }
         }
+
+        // set projectile flags
+        projectile->anim_noloop = (flags & PROJECTILE_ANIM_NOLOOP);
+        projectile->strong = (flags & PROJECTILE_STRONG);
+
+        // set animation
         projectile->frame = projectile->def.animations[dir].start;
         projectile->frame_start = projectile->def.animations[dir].start;
         projectile->frame_end = projectile->def.animations[dir].end + 1;
 
+        // set coordinates
         UINT16 initial_offset = projectile->def.initial_offset;
         projectile->pos.x = pos->x;
         projectile->pos.y = pos->y;
@@ -181,12 +208,12 @@ void projectile_launch(UBYTE index, upoint16_t *pos, UBYTE angle) BANKED {
         // Offset by initial amount
         while (initial_offset > 0xFFu) {
             projectile->pos.x += ((sinv * (UINT8)(0xFF)) >> 7);
-            projectile->pos.y -= ((cosv * (UINT8)(0xFF)) >> 7); 
-            initial_offset -= 0xFFu;           
+            projectile->pos.y -= ((cosv * (UINT8)(0xFF)) >> 7);
+            initial_offset -= 0xFFu;
         }
         if (initial_offset > 0) {
             projectile->pos.x += ((sinv * (UINT8)(initial_offset)) >> 7);
-            projectile->pos.y -= ((cosv * (UINT8)(initial_offset)) >> 7); 
+            projectile->pos.y -= ((cosv * (UINT8)(initial_offset)) >> 7);
         }
 
         point_translate_angle_to_delta(&projectile->delta_pos, angle, projectile->def.move_speed);
